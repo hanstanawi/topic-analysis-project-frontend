@@ -11,9 +11,13 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: '/articles',
+    path: '/articles/:id?',
     name: 'Articles',
     component: () => import(/* webpackChunkName: "about" */ '../views/ArticlesView.vue'),
+  },
+  {
+    path: '*',
+    redirect: '/',
   },
 ];
 

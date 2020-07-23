@@ -4,11 +4,13 @@
     app
     clipped-left
     clipped-right
-    >
-     <v-app-bar-nav-icon @click="miniVariant = !miniVariant">
+  >
+     <v-app-bar-nav-icon
+      @click="miniVariant = !miniVariant"
+      >
      </v-app-bar-nav-icon>
      <v-toolbar-title>
-       <v-icon left>mdi-newspaper-variant</v-icon>
+       <v-icon left class="mx-0">mdi-newspaper-variant</v-icon>
        News Analysis
      </v-toolbar-title>
    </v-app-bar>
