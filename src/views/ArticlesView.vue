@@ -1,5 +1,7 @@
 <template>
-  <v-container class="my-5">
+  <v-container
+    class="my-5 px-10"
+    fluid>
     <articles-toolbar
       @updateSearchValue="searchValue = $event"
     />
