@@ -1,35 +1,35 @@
 <template>
- <v-card width="700px" class="pa-1">
+ <v-card max-width="700px">
    <v-row>
      <v-col cols="11">
        <apexchart
-        type="area"
-        :options="chartOptions"
-        :series="series"
-      />
+          type="bar"
+          :options="chartOptions"
+          :series="series"
+        />
      </v-col>
    </v-row>
+
  </v-card>
 </template>
 
 <script>
 export default {
-  name: 'AreaChart',
+  name: 'BarChart',
   data() {
     return {
       chartOptions: {
         chart: {
-          id: 'vuechart-example',
+          id: 'barchart',
           toolbar: {
             show: false,
           },
-
         },
         xaxis: {
           categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
         },
         title: {
-          text: 'Most Talked Topics',
+          text: 'Your Recent Searches',
           align: 'left',
         },
       },
