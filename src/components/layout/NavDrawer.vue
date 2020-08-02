@@ -10,7 +10,9 @@
       permanent
       overflow
       >
-      <v-list>
+      <v-list
+        dense
+      >
           <v-list-item
             v-for="link in links"
             :key="link.label"

@@ -13,12 +13,12 @@
         v-model="searchTerm"
         outlined
         rounded
-        prepend-inner-icon="mdi-magnify"
-        label="Search the News List"
+        prepend-icon="mdi-magnify"
+        prepend-inner-icon="mdi-filter-variant"
+        label="Filter the Articles List"
         append-icon="mdi-close"
-        append-outer-icon="mdi-tag-multiple"
         @click:append="searchTerm = ''"
-        @click:append-outer="filterMode = !filterMode"
+        @click:prepend="filterMode = !filterMode"
       />
       <!-- TAG SEARCH -->
       <v-combobox
@@ -34,8 +34,9 @@
         small-chips
         rounded
         outlined
-        append-outer-icon="mdi-filter-variant"
-        @click:append-outer="filterMode = !filterMode"
+        prepend-inner-icon="mdi-magnify"
+        prepend-icon="mdi-filter-variant"
+        @click:prepend="filterMode = !filterMode"
       >
         <!-- SEARCH OR CREATE A CHIP -->
         <template v-slot:no-data>
@@ -101,8 +102,10 @@
           </v-list-item-action>
         </template>
         <template v-slot:append-outer>
-          <v-btn color="primary" style="transform: translate(0, -22%);">
-            <v-icon left small>mdi-magnify</v-icon>
+          <v-btn
+            color="primary"
+            style="transform: translate(0, -22%);"
+          >
               Search
           </v-btn>
         </template>

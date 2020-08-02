@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import ArticleCard from '../components/articles/ArticleCard.vue';
 import ArticlesToolbar from '../components/articles/ArticlesToolbar.vue';
 
@@ -38,17 +38,25 @@ export default {
   },
   computed: {
     ...mapGetters({
-      newsData: 'newsData',
+      articlesList: 'getArticlesList',
     }),
     filteredList() {
       const searchValue = this.searchValue.toLowerCase();
       if (this.searchValue === '' || !this.searchValue) {
-        return this.newsData;
+        return this.articlesList;
       }
       // eslint-disable-next-line max-len
-      const searchValueFilter = this.newsData.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
+      const searchValueFilter = this.articlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
       return searchValueFilter;
     },
+  },
+  async created() {
+    await this.fetchArticles();
+  },
+  methods: {
+    ...mapActions({
+      fetchArticles: 'getAllArticles',
+    }),
   },
 };
 </script>

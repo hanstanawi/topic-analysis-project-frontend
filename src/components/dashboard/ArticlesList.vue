@@ -14,8 +14,8 @@
     <!-- ITEMS -->
     <v-card-text>
       <v-list two-line>
-      <template v-for="(news, index) in newsList">
-        <v-list-item :key="index">
+      <template v-for="(news, index) in articlesList">
+        <v-list-item :key="news.id">
           <template v-slot:default="{ active }">
             <v-list-item-content>
               <v-list-item-title v-text="news.title" class="text-left title"> </v-list-item-title>
@@ -26,14 +26,13 @@
               <v-icon v-if="!active" color="grey lighten-1">
                 mdi-star_border
               </v-icon>
-
               <v-icon v-else color="yellow">
                 mdi-star
               </v-icon>
             </v-list-item-action>
           </template>
         </v-list-item>
-        <v-divider v-if="index + 1 < newsList.length" :key="index" />
+        <v-divider v-if="index + 1 < articlesList.length" :key="index" />
        </template>
       </v-list>
     </v-card-text>
@@ -46,7 +45,9 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'ArticlesList',
   computed: {
-    ...mapGetters(['newsData']),
+    ...mapGetters({
+      articlesList: 'getArticlesList',
+    }),
     newsList() {
       const modifiedNewsData = this.newsData.slice(0, 8).map((news) => ({
         ...news,
