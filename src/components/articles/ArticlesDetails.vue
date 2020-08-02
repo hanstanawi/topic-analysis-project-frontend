@@ -1,6 +1,7 @@
 <template>
  <div>
-
+   <h1>{{ article.title }}</h1>
+   <p>{{ article.content }}</p>
  </div>
 </template>
 
@@ -8,10 +9,9 @@
 export default {
   name: 'ArticlesDetails',
   props: {
-    articleId: {
-      type: String,
+    article: {
+      type: Object,
       required: true,
-      default: undefined,
     },
   },
 };

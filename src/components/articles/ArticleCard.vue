@@ -9,11 +9,17 @@
         contain
       />
     </v-responsive>
-    <v-card-title
-      class="title"
+    <router-link
+      tag="p"
+      :to="{ name: 'ArticleDetails', params: { id: news.id }}"
+    >
+      <v-card-title
+      class="article-title"
     >
       {{ news.title }}
     </v-card-title>
+    </router-link>
+
     <v-row
       justify="start"
       class="my-0 py-0"
@@ -63,4 +69,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+p .article-title {
+cursor: pointer;
+}
+p .article-title:hover {
+  text-decoration: underline;
+}
+</style>
