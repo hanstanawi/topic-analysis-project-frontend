@@ -3,7 +3,7 @@
    <v-row>
      <v-col cols="11" align="center">
        <apexchart
-        height="300"
+        :height="height"
         type="line"
         :options="chartOptions"
         :series="series"
@@ -17,6 +17,22 @@
 <script>
 export default {
   name: 'LineChart',
+  props: {
+    height: {
+      type: Number,
+    },
+    width: {
+      type: Number,
+    },
+    series: {
+      type: Array,
+      default: () => [],
+    },
+    categories: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
       chartOptions: {
@@ -37,20 +53,6 @@ export default {
           curve: 'smooth',
         },
       },
-      series: [
-        {
-          name: 'Topic 1',
-          data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
-        },
-        {
-          name: 'Topic 2',
-          data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
-        },
-        {
-          name: 'Topic 3',
-          data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
-        },
-      ],
     };
   },
 };

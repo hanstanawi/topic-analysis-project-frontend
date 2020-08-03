@@ -14,12 +14,11 @@
       :to="{ name: 'ArticleDetails', params: { id: news.id }}"
     >
       <v-card-title
-      class="article-title"
+      class="article-title pb-0"
     >
       {{ news.title }}
     </v-card-title>
     </router-link>
-
     <v-row
       justify="start"
       class="my-0 py-0"
@@ -33,9 +32,19 @@
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
-          v-for="(category, index) in news.category"
-          :key="index"
-          >{{ category }}
+          >{{ news.category1 }}
+        </v-chip>
+        <v-chip
+          small
+          class="mx-1 d-flex-inline white--text"
+          color="primary"
+          >{{ news.category2 }}
+        </v-chip>
+        <v-chip
+          small
+          class="mx-1 d-flex-inline white--text"
+          color="primary"
+          >{{ news.category3 }}
         </v-chip>
       </v-col>
     </v-row>

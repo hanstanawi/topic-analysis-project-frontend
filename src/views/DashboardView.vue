@@ -14,7 +14,10 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="12" align="center">
-            <line-chart />
+            <line-chart
+              :series="lineChartSeries"
+              :height="300"
+            />
           </v-col>
         </v-row>
       </v-col>
@@ -42,6 +45,25 @@ export default {
     BarChart,
     LineChart,
     ArticlesList,
+  },
+  data() {
+    return {
+      // Just temprorary series data. Will be removed soon
+      lineChartSeries: [
+        {
+          name: 'Topic 1',
+          data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
+        },
+        {
+          name: 'Topic 2',
+          data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
+        },
+        {
+          name: 'Topic 3',
+          data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+        },
+      ],
+    };
   },
 };
 </script>

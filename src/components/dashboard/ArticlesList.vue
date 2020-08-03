@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ArticlesList',
@@ -55,6 +55,14 @@ export default {
       }));
       return modifiedNewsData;
     },
+  },
+  async created() {
+    await this.fetchArticles();
+  },
+  methods: {
+    ...mapActions({
+      fetchArticles: 'getAllArticles',
+    }),
   },
 };
 </script>
