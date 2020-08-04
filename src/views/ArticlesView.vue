@@ -4,17 +4,42 @@
     fluid>
     <articles-toolbar
       @updateSearchValue="searchValue = $event"
+      @searchKeyword="fetchSearchResults($event)"
     />
-    <v-row>
+    <!-- LATEST ARTICLES -->
+    <v-row v-if="!searchedResults">
       <v-col
         cols="12"
         sm="6"
         md="4"
         lg="3"
         xl="2"
-        v-for="news in filteredList"
-        :key="news.id">
-       <article-card :news="news"/>
+        v-for="article in filteredList"
+        :key="article.id">
+       <article-card :article="article"/>
+     </v-col>
+   </v-row>
+  <!-- SEARCHED RESULTS -->
+    <v-row v-else>
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        xl="2"
+        v-for="article in searchedArticlesList"
+        :key="article.id">
+       <article-card :article="article"/>
+     </v-col>
+   </v-row>
+   <v-row v-if="!searchedArticlesList.length">
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        xl="2">
+       <h1>No result</h1>
      </v-col>
    </v-row>
   </v-container>
@@ -30,6 +55,7 @@ export default {
   data() {
     return {
       searchValue: '',
+      searchedResults: false,
     };
   },
   components: {
@@ -39,6 +65,7 @@ export default {
   computed: {
     ...mapGetters({
       articlesList: 'getArticlesList',
+      searchedArticlesList: 'getSearchedArticlesList',
     }),
     filteredList() {
       const searchValue = this.searchValue.toLowerCase();
@@ -56,7 +83,15 @@ export default {
   methods: {
     ...mapActions({
       fetchArticles: 'getAllArticles',
+      searchArticlesWithKeyword: 'searchArticlesWithKeyword',
     }),
+    async fetchSearchResults(keyword) {
+      await this.searchArticlesWithKeyword(keyword);
+      if (!keyword || keyword === '') {
+        this.searchedResults = false;
+      }
+      this.searchedResults = true;
+    },
   },
 };
 </script>

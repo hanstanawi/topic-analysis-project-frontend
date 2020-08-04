@@ -8,14 +8,23 @@
         <v-col cols="12">
           <v-row>
             <v-col cols="12">
-              <div class="text-center text-h3 font-weight-medium">
+              <div
+                class="text-left ml-4 text-h4 font-weight-medium"
+              >
                 {{ article.title }}
                </div>
             </v-col>
           </v-row>
           <v-row justify="center">
-            <v-col cols="12" align="center" class="pb-0">
-              <v-img class="movie-img" max-height="500" :src="article.image" />
+            <v-col
+              cols="12"
+              align="center"
+              class="pb-0"
+            >
+              <v-img
+                max-height="500"
+                :src="article.image"
+              />
             </v-col>
           </v-row>
           <v-card-text>

@@ -105,6 +105,7 @@
           <v-btn
             color="primary"
             style="transform: translate(0, -22%);"
+            @click="$emit('searchKeyword', singleKeyword)"
           >
               Search
           </v-btn>
@@ -158,6 +159,12 @@ export default {
         }
         return v;
       });
+    },
+  },
+  computed: {
+    singleKeyword() {
+      const singleKeyword = this.tags.slice(0, 2).map((tag) => tag.text);
+      return singleKeyword.toString();
     },
   },
   methods: {

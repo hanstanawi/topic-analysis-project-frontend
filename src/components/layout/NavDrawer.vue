@@ -4,7 +4,7 @@
       app
       clipped
       persistent
-      :mini-variant.sync="miniVariant"
+      :mini-variant="miniVariant"
       class="hidden-md-only"
       width="200"
       permanent

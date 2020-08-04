@@ -1,4 +1,5 @@
 <template>
+<div>
   <v-card max-width="400px" class="mx-auto">
     <!-- TOOLBAR -->
     <v-toolbar
@@ -14,22 +15,18 @@
     <!-- ITEMS -->
     <v-card-text>
       <v-list two-line>
-      <template v-for="(news, index) in articlesList">
-        <v-list-item :key="news.id">
-          <template v-slot:default="{ active }">
+      <template v-for="(article, index) in articlesList">
+        <v-list-item :key="article.id">
+          <template>
             <v-list-item-content>
-              <v-list-item-title v-text="news.title" class="text-left title"> </v-list-item-title>
-              <v-list-item-subtitle class="text--primary" v-text="news.content">
+              <v-list-item-title
+                v-text="article.title"
+                class="text-left title"
+              >
+              </v-list-item-title>
+              <v-list-item-subtitle class="text--primary" v-text="article.content">
               </v-list-item-subtitle>
             </v-list-item-content>
-            <v-list-item-action>
-              <v-icon v-if="!active" color="grey lighten-1">
-                mdi-star_border
-              </v-icon>
-              <v-icon v-else color="yellow">
-                mdi-star
-              </v-icon>
-            </v-list-item-action>
           </template>
         </v-list-item>
         <v-divider v-if="index + 1 < articlesList.length" :key="index" />
@@ -37,13 +34,28 @@
       </v-list>
     </v-card-text>
   </v-card>
+  <!-- <article-details-modal
+    :showArticleDetails="showArticleDetails"
+    :article="news"
+  /> -->
+</div>
+
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+// import ArticleDetailsModal from './ArticleDetailsModal.vue';
 
 export default {
   name: 'ArticlesList',
+  components: {
+    // ArticleDetailsModal,
+  },
+  data() {
+    return {
+      showArticleDetails: false,
+    };
+  },
   computed: {
     ...mapGetters({
       articlesList: 'getArticlesList',

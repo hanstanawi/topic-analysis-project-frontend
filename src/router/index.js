@@ -30,9 +30,14 @@ const routes = [
           next();
         })
         .catch((err) => {
-          console.log(err);
+          throw err;
         });
     },
+  },
+  {
+    path: '/topics',
+    name: 'Topic Detection',
+    component: () => import(/* webpackChunkName: "about" */ '../views/TopicDetectionView.vue'),
   },
   {
     path: '*',

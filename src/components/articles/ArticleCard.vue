@@ -2,21 +2,22 @@
   <v-card
     class="text-center ma-1 my-3 mx-auto card-style"
     width="1000px"
+    height="92%"
   >
     <v-responsive>
       <v-img
-        :src="news.image"
+        :src="article.image"
         contain
       />
     </v-responsive>
     <router-link
       tag="p"
-      :to="{ name: 'ArticleDetails', params: { id: news.id }}"
+      :to="{ name: 'ArticleDetails', params: { id: article.id }}"
     >
       <v-card-title
       class="article-title pb-0"
     >
-      {{ news.title }}
+      {{ article.title }}
     </v-card-title>
     </router-link>
     <v-row
@@ -32,26 +33,26 @@
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
-          >{{ news.category1 }}
+          >{{ article.category1 }}
         </v-chip>
         <v-chip
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
-          >{{ news.category2 }}
+          >{{ article.category2 }}
         </v-chip>
         <v-chip
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
-          >{{ news.category3 }}
+          >{{ article.category3 }}
         </v-chip>
       </v-col>
     </v-row>
     <v-card-text
       class="text--primary text-left"
     >
-      <p>{{ news.content.slice(0, 50) + "..." }}</p>
+      <p>{{ article.content.slice(0, 50) + "..." }}</p>
     </v-card-text>
     <!-- <v-divider></v-divider>
     <v-card-actions>
@@ -70,7 +71,7 @@
 export default {
   name: 'ArticleCard',
   props: {
-    news: {
+    article: {
       type: Object,
       required: true,
     },

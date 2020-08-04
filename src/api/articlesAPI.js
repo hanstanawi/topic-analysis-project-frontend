@@ -16,4 +16,7 @@ export default {
   getSingleArticle(articleId) {
     return apiClient.get(`/article?articleId=${articleId}`);
   },
+  searchArticlesWithKeyword(keyword) {
+    return apiClient.get(`/search?keyword=${keyword}`);
+  },
 };
