@@ -18,6 +18,7 @@
             :key="link.label"
             route
             :to="link.url"
+            dense
           >
             <v-list-item-action>
               <v-icon color="grey darken-2">{{ link.icon }}</v-icon>
@@ -49,9 +50,14 @@ export default {
           icon: 'mdi-view-dashboard-variant-outline',
         },
         {
-          label: 'Articles',
+          label: 'Topic Detection',
+          url: '/topics',
+          icon: 'mdi-chart-histogram',
+        },
+        {
+          label: 'Articles Search',
           url: '/articles',
-          icon: 'mdi-newspaper-variant',
+          icon: 'mdi-feature-search',
         },
       ],
     };

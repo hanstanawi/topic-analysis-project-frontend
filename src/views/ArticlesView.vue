@@ -6,7 +6,7 @@
       @updateSearchValue="searchValue = $event"
       @searchKeyword="fetchSearchResults($event)"
     />
-    <!-- LATEST ARTICLES -->
+    <!-- INITIAL ARTICLES -->
     <v-row v-if="!searchedResults">
       <v-col
         cols="12"
@@ -27,12 +27,12 @@
         md="4"
         lg="3"
         xl="2"
-        v-for="article in searchedArticlesList"
+        v-for="article in filteredList"
         :key="article.id">
        <article-card :article="article"/>
      </v-col>
    </v-row>
-   <v-row v-if="!searchedArticlesList.length">
+   <v-row v-if="!searchedArticlesList.length && searchedResults">
       <v-col
         cols="12"
         sm="6"
@@ -68,12 +68,21 @@ export default {
       searchedArticlesList: 'getSearchedArticlesList',
     }),
     filteredList() {
+      if (!this.searchedResults) {
+        const searchValue = this.searchValue.toLowerCase();
+        if (this.searchValue === '' || !this.searchValue) {
+          return this.articlesList;
+        }
+        // eslint-disable-next-line max-len
+        const searchValueFilter = this.articlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
+        return searchValueFilter;
+      }
       const searchValue = this.searchValue.toLowerCase();
       if (this.searchValue === '' || !this.searchValue) {
-        return this.articlesList;
+        return this.searchedArticlesList;
       }
       // eslint-disable-next-line max-len
-      const searchValueFilter = this.articlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
+      const searchValueFilter = this.searchedArticlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
       return searchValueFilter;
     },
   },

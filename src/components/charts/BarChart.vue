@@ -1,21 +1,40 @@
 <template>
- <v-card max-width="700px">
-   <v-row>
-     <v-col cols="11">
-       <apexchart
-          type="bar"
-          :options="chartOptions"
-          :series="series"
-        />
-     </v-col>
-   </v-row>
-
- </v-card>
+  <v-card max-width="700px">
+    <v-row>
+      <v-col cols="11">
+        <apexchart type="bar" :options="chartOptions" :series="series" />
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 export default {
   name: 'BarChart',
+  props: {
+    height: {
+      type: Number,
+      default: null,
+    },
+    width: {
+      type: Number,
+      default: null,
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+    series: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    categories: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
   data() {
     return {
       chartOptions: {
@@ -26,22 +45,17 @@ export default {
           },
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: this.categories,
         },
         title: {
-          text: 'Your Recent Searches',
+          text: this.title,
           align: 'left',
         },
       },
-      series: [{
-        name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
-      }],
     };
   },
 };
 </script>
 
 <style>
-
 </style>

@@ -1,6 +1,10 @@
 <template>
 <div>
-  <v-card max-width="400px" class="mx-auto">
+  <v-card
+    max-width="550px"
+    height="100%"
+    class="mx-auto"
+  >
     <!-- TOOLBAR -->
     <v-toolbar
       color="primary"
@@ -8,15 +12,15 @@
     >
       <v-toolbar-title>Latest Articles</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
     </v-toolbar>
     <!-- ITEMS -->
     <v-card-text>
       <v-list two-line>
       <template v-for="(article, index) in articlesList">
-        <v-list-item :key="article.id">
+        <v-list-item
+          :key="article.id"
+          @click="$emit('openArticleModal', article)"
+        >
           <template>
             <v-list-item-content>
               <v-list-item-title
@@ -34,47 +38,23 @@
       </v-list>
     </v-card-text>
   </v-card>
-  <!-- <article-details-modal
-    :showArticleDetails="showArticleDetails"
-    :article="news"
-  /> -->
 </div>
 
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-// import ArticleDetailsModal from './ArticleDetailsModal.vue';
-
 export default {
   name: 'ArticlesList',
-  components: {
-    // ArticleDetailsModal,
+  props: {
+    articlesList: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
       showArticleDetails: false,
     };
-  },
-  computed: {
-    ...mapGetters({
-      articlesList: 'getArticlesList',
-    }),
-    newsList() {
-      const modifiedNewsData = this.newsData.slice(0, 8).map((news) => ({
-        ...news,
-        content: `${news.content.slice(0, 50)}...`,
-      }));
-      return modifiedNewsData;
-    },
-  },
-  async created() {
-    await this.fetchArticles();
-  },
-  methods: {
-    ...mapActions({
-      fetchArticles: 'getAllArticles',
-    }),
   },
 };
 </script>

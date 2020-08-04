@@ -13,6 +13,7 @@
         v-model="searchTerm"
         outlined
         rounded
+        dense
         prepend-icon="mdi-magnify"
         prepend-inner-icon="mdi-filter-variant"
         label="Filter the Articles List"
@@ -29,9 +30,10 @@
         :items="items"
         :search-input.sync="tagSearch"
         hide-selected
-        label="Search for a topic"
+        label="Enter a keyword"
         multiple
         small-chips
+        dense
         rounded
         outlined
         prepend-inner-icon="mdi-magnify"
@@ -104,7 +106,8 @@
         <template v-slot:append-outer>
           <v-btn
             color="primary"
-            style="transform: translate(0, -22%);"
+            small
+            style="transform: translate(0, -12%);"
             @click="$emit('searchKeyword', singleKeyword)"
           >
               Search

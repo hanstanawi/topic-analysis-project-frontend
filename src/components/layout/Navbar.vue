@@ -9,9 +9,9 @@
       @click="miniVariant = !miniVariant"
       >
      </v-app-bar-nav-icon>
-     <v-toolbar-title>
-       <v-icon left class="mx-0">mdi-newspaper-variant</v-icon>
-       News Analysis
+     <v-toolbar-title class="font-weight-medium">
+       <v-icon left class="mx-0 pb-1">mdi-newspaper-variant</v-icon>
+       Topic Analysis
      </v-toolbar-title>
    </v-app-bar>
    <v-slide-x-transition appear>

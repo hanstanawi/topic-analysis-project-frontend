@@ -2,41 +2,83 @@
   <v-container
     fluid
   >
-    <v-row justify="center">
-      <v-col cols="7" align="end">
+    <v-row
+      justify="start">
+      <v-col
+        cols="7"
+        align="end"
+      >
         <v-row justify="space-between">
-          <v-col cols="6" align="center">
-            <area-chart />
+          <v-col
+            cols="6"
+            align="center"
+          >
+            <!-- MOST TALKED TOPICS CHART -->
+            <area-chart
+              :series="areaChartStats.series"
+              :categories="areaChartStats.categories"
+              :title="areaChartStats.title"
+            />
           </v-col>
-          <v-col cols="6" align="center">
-            <bar-chart />
+          <v-col
+            cols="6"
+            align="center"
+          >
+            <!-- RECENT SEARCHED TOPICS -->
+            <bar-chart
+              :series="barChartStats.series"
+              :categories="barChartStats.categories"
+              :title="barChartStats.title"
+            />
           </v-col>
         </v-row>
         <v-row justify="center">
-          <v-col cols="12" align="center">
+          <v-col
+            cols="12"
+            align="center"
+          >
+            <!-- TOP 3 TOPICS -->
             <line-chart
-              :series="lineChartSeries"
+              :series="lineChartStats.series"
+              :categories="lineChartStats.categories"
+              :title="lineChartStats.title"
               :height="300"
             />
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="5" align="center">
+      <v-col
+        cols="5"
+        align="center"
+      >
         <v-row justify="center">
-          <v-col cols="12" align="center">
-            <articles-list />
+          <v-col
+            cols="12"
+            align="center"
+          >
+            <articles-list
+              @openArticleModal="openArticleDetails"
+              :articles-list="articlesList"
+            />
           </v-col>
         </v-row>
       </v-col>
     </v-row>
+    <article-details-modal
+      :article="article"
+      :show-article-details="openArticleModal"
+      @close="hideArticleDetails"
+    />
   </v-container>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import AreaChart from '../components/charts/AreaChart.vue';
 import BarChart from '../components/charts/BarChart.vue';
 import LineChart from '../components/charts/LineChart.vue';
 import ArticlesList from '../components/dashboard/ArticlesList.vue';
+import ArticleDetailsModal from '../components/dashboard/ArticleDetailsModal.vue';
 
 export default {
   name: 'Dashboard',
@@ -45,25 +87,37 @@ export default {
     BarChart,
     LineChart,
     ArticlesList,
+    ArticleDetailsModal,
   },
   data() {
     return {
-      // Just temprorary series data. Will be removed soon
-      lineChartSeries: [
-        {
-          name: 'Topic 1',
-          data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
-        },
-        {
-          name: 'Topic 2',
-          data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
-        },
-        {
-          name: 'Topic 3',
-          data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
-        },
-      ],
+      openArticleModal: false,
+      article: {},
     };
+  },
+  computed: {
+    ...mapGetters({
+      articlesList: 'getArticlesList',
+      lineChartStats: 'getDashboardLineChartStats',
+      barChartStats: 'getDashboardBarChartStats',
+      areaChartStats: 'getDashboardAreaChartStats',
+    }),
+  },
+  async created() {
+    await this.fetchArticles();
+    console.log(this.barChartStats);
+  },
+  methods: {
+    ...mapActions({
+      fetchArticles: 'getAllArticles',
+    }),
+    openArticleDetails(article) {
+      this.article = article;
+      this.openArticleModal = true;
+    },
+    hideArticleDetails() {
+      this.openArticleModal = false;
+    },
   },
 };
 </script>

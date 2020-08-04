@@ -15,6 +15,30 @@
 <script>
 export default {
   name: 'AreaChart',
+  props: {
+    height: {
+      type: Number,
+      default: null,
+    },
+    width: {
+      type: Number,
+      default: null,
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+    series: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+    categories: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
   data() {
     return {
       chartOptions: {
@@ -23,20 +47,15 @@ export default {
           toolbar: {
             show: false,
           },
-
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: this.categories,
         },
         title: {
-          text: 'Most Talked Topics',
+          text: this.title,
           align: 'left',
         },
       },
-      series: [{
-        name: 'series-1',
-        data: [30, 40, 35, 50, 49, 60, 70, 91],
-      }],
     };
   },
 };
