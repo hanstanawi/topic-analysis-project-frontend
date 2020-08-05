@@ -40,6 +40,10 @@ const state = {
       },
     ],
   },
+  topicPieChartStats: {
+    title: 'Top 5 Sources',
+    series: [44, 55, 41, 17, 15],
+  },
 };
 
 const mutations = {
@@ -55,6 +59,9 @@ const getters = {
   },
   getDashboardAreaChartStats() {
     return state.dashboardAreaChartStats;
+  },
+  getTopicPieChartStats() {
+    return state.topicPieChartStats;
   },
 };
 

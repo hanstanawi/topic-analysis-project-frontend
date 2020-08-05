@@ -1,8 +1,15 @@
 <template>
-  <v-card max-width="700px">
+  <v-card
+    max-width="700px"
+    flat
+  >
     <v-row>
       <v-col cols="11">
-        <apexchart type="bar" :options="chartOptions" :series="series" />
+        <apexchart
+          type="bar"
+          :options="chartOptions"
+          :series="series"
+        />
       </v-col>
     </v-row>
   </v-card>

@@ -1,5 +1,9 @@
 <template>
- <v-card width="700px" class="pa-1">
+ <v-card
+  width="700px"
+  class="pa-1"
+  flat
+  >
    <v-row>
      <v-col cols="11">
        <apexchart

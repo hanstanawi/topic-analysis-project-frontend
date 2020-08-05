@@ -4,7 +4,7 @@
     fluid>
     <articles-toolbar
       @updateSearchValue="searchValue = $event"
-      @searchKeyword="fetchSearchResults($event)"
+      @search-keyword="fetchSearchResults($event)"
     />
     <!-- INITIAL ARTICLES -->
     <v-row v-if="!searchedResults">
@@ -34,11 +34,9 @@
    </v-row>
    <v-row v-if="!searchedArticlesList.length && searchedResults">
       <v-col
+        align="center"
         cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        xl="2">
+      >
        <h1>No result</h1>
      </v-col>
    </v-row>

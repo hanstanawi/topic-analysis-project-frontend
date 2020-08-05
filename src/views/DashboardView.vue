@@ -2,68 +2,74 @@
   <v-container
     fluid
   >
-    <v-row
-      justify="start">
-      <v-col
-        cols="7"
-        align="end"
+    <v-card
+      class="px-2"
+      height="100%"
+    >
+      <v-row
+        justify="start"
       >
-        <v-row justify="space-between">
-          <v-col
-            cols="6"
-            align="center"
-          >
-            <!-- MOST TALKED TOPICS CHART -->
-            <area-chart
-              :series="areaChartStats.series"
-              :categories="areaChartStats.categories"
-              :title="areaChartStats.title"
-            />
-          </v-col>
-          <v-col
-            cols="6"
-            align="center"
-          >
-            <!-- RECENT SEARCHED TOPICS -->
-            <bar-chart
-              :series="barChartStats.series"
-              :categories="barChartStats.categories"
-              :title="barChartStats.title"
-            />
-          </v-col>
-        </v-row>
-        <v-row justify="center">
-          <v-col
-            cols="12"
-            align="center"
-          >
-            <!-- TOP 3 TOPICS -->
-            <line-chart
-              :series="lineChartStats.series"
-              :categories="lineChartStats.categories"
-              :title="lineChartStats.title"
-              :height="300"
-            />
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col
-        cols="5"
-        align="center"
-      >
-        <v-row justify="center">
-          <v-col
-            cols="12"
-            align="center"
-          >
-            <articles-list
-              @openArticleModal="openArticleDetails"
-              :articles-list="articlesList"
-            />
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
+        <v-col
+          cols="7"
+          align="end"
+        >
+          <v-row justify="space-between">
+            <v-col
+              cols="6"
+              align="center"
+            >
+              <!-- MOST TALKED TOPICS CHART -->
+              <area-chart
+                :series="areaChartStats.series"
+                :categories="areaChartStats.categories"
+                :title="areaChartStats.title"
+              />
+            </v-col>
+            <v-col
+              cols="6"
+              align="center"
+            >
+              <!-- RECENT SEARCHED TOPICS -->
+              <bar-chart
+                :series="barChartStats.series"
+                :categories="barChartStats.categories"
+                :title="barChartStats.title"
+              />
+            </v-col>
+          </v-row>
+          <v-row justify="center">
+            <v-col
+              cols="12"
+              align="center"
+            >
+              <!-- TOP 3 TOPICS -->
+              <line-chart
+                :series="lineChartStats.series"
+                :categories="lineChartStats.categories"
+                :title="lineChartStats.title"
+                :height="300"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col
+          cols="5"
+          align="center"
+        >
+          <v-row justify="center">
+            <v-col
+              cols="12"
+              align="center"
+            >
+              <articles-list
+                @open-article-modal="openArticleDetails"
+                :articles-list="articlesList"
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-card>
     <article-details-modal
       :article="article"
       :show-article-details="openArticleModal"
@@ -105,7 +111,6 @@ export default {
   },
   async created() {
     await this.fetchArticles();
-    console.log(this.barChartStats);
   },
   methods: {
     ...mapActions({

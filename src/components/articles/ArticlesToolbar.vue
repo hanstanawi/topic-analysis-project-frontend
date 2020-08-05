@@ -108,7 +108,7 @@
             color="primary"
             small
             style="transform: translate(0, -12%);"
-            @click="$emit('searchKeyword', singleKeyword)"
+            @click="$emit('search-keyword', singleKeyword)"
           >
               Search
           </v-btn>

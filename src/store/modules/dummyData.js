@@ -64,4 +64,252 @@ const newsData = [
   },
 ];
 
-export default newsData;
+const topicsData = [
+  {
+    id: '131323',
+    title: 'Topic 1',
+    content: 'Its had resolving otherwise she contented therefore. Afford relied warmth out sir hearts sister use garden. Men day warmth formed admire former simple. Humanity declared vicinity continue supplied no an. He hastened am no property exercise of. Dissimilar comparison no terminated devonshire no literature on. Say most yet head room such just easy. ',
+    sources: [
+      {
+        name: 'CNN',
+        amount: 40,
+      },
+      {
+        name: 'BBC',
+        amount: 30,
+      },
+      {
+        name: 'PTT',
+        amount: 10,
+      },
+      {
+        name: 'WSJ',
+        amount: 50,
+      },
+    ],
+    keywords: [
+      {
+        keyword: 'Apple',
+        quantity: 20,
+      },
+      {
+        keyword: 'Orange',
+        quantity: 10,
+      },
+      {
+        keyword: 'Watermelon',
+        quantity: 50,
+      },
+      {
+        keyword: 'Grapes',
+        quantity: 20,
+      },
+      {
+        keyword: 'Banana',
+        quantity: 10,
+      },
+      {
+        keyword: 'Chocolate',
+        quantity: 100,
+      },
+    ],
+  },
+  {
+    id: '9080835',
+    title: 'Topic 1',
+    content: 'Its had resolving otherwise she contented therefore. Afford relied warmth out sir hearts sister use garden. Men day warmth formed admire former simple. Humanity declared vicinity continue supplied no an. He hastened am no property exercise of. Dissimilar comparison no terminated devonshire no literature on. Say most yet head room such just easy. ',
+    sources: [
+      {
+        name: 'CNN',
+        amount: 40,
+      },
+      {
+        name: 'BBC',
+        amount: 30,
+      },
+      {
+        name: 'PTT',
+        amount: 10,
+      },
+      {
+        name: 'WSJ',
+        amount: 50,
+      },
+    ],
+    keywords: [
+      {
+        keyword: 'Apple',
+        quantity: 20,
+      },
+      {
+        keyword: 'Orange',
+        quantity: 10,
+      },
+      {
+        keyword: 'Watermelon',
+        quantity: 50,
+      },
+      {
+        keyword: 'Grapes',
+        quantity: 20,
+      },
+      {
+        keyword: 'Banana',
+        quantity: 10,
+      },
+      {
+        keyword: 'Chocolate',
+        quantity: 100,
+      },
+    ],
+  },
+  {
+    id: '345234',
+    title: 'Topic 1',
+    content: 'Its had resolving otherwise she contented therefore. Afford relied warmth out sir hearts sister use garden. Men day warmth formed admire former simple. Humanity declared vicinity continue supplied no an. He hastened am no property exercise of. Dissimilar comparison no terminated devonshire no literature on. Say most yet head room such just easy. ',
+    sources: [
+      {
+        name: 'CNN',
+        amount: 40,
+      },
+      {
+        name: 'BBC',
+        amount: 30,
+      },
+      {
+        name: 'PTT',
+        amount: 10,
+      },
+      {
+        name: 'WSJ',
+        amount: 50,
+      },
+    ],
+    keywords: [
+      {
+        keyword: 'Apple',
+        quantity: 20,
+      },
+      {
+        keyword: 'Orange',
+        quantity: 10,
+      },
+      {
+        keyword: 'Watermelon',
+        quantity: 50,
+      },
+      {
+        keyword: 'Grapes',
+        quantity: 20,
+      },
+      {
+        keyword: 'Banana',
+        quantity: 10,
+      },
+      {
+        keyword: 'Chocolate',
+        quantity: 100,
+      },
+    ],
+  },
+  {
+    id: '457123',
+    title: 'Topic 1',
+    content: 'Its had resolving otherwise she contented therefore. Afford relied warmth out sir hearts sister use garden. Men day warmth formed admire former simple. Humanity declared vicinity continue supplied no an. He hastened am no property exercise of. Dissimilar comparison no terminated devonshire no literature on. Say most yet head room such just easy. ',
+    sources: [
+      {
+        name: 'CNN',
+        amount: 40,
+      },
+      {
+        name: 'BBC',
+        amount: 30,
+      },
+      {
+        name: 'PTT',
+        amount: 10,
+      },
+      {
+        name: 'WSJ',
+        amount: 50,
+      },
+    ],
+    keywords: [
+      {
+        keyword: 'Apple',
+        quantity: 20,
+      },
+      {
+        keyword: 'Orange',
+        quantity: 10,
+      },
+      {
+        keyword: 'Watermelon',
+        quantity: 50,
+      },
+      {
+        keyword: 'Grapes',
+        quantity: 20,
+      },
+      {
+        keyword: 'Banana',
+        quantity: 10,
+      },
+      {
+        keyword: 'Chocolate',
+        quantity: 100,
+      },
+    ],
+  },
+  {
+    id: '340567',
+    title: 'Topic 1',
+    content: 'Its had resolving otherwise she contented therefore. Afford relied warmth out sir hearts sister use garden. Men day warmth formed admire former simple. Humanity declared vicinity continue supplied no an. He hastened am no property exercise of. Dissimilar comparison no terminated devonshire no literature on. Say most yet head room such just easy. ',
+    sources: [
+      {
+        name: 'CNN',
+        amount: 40,
+      },
+      {
+        name: 'BBC',
+        amount: 30,
+      },
+      {
+        name: 'PTT',
+        amount: 10,
+      },
+      {
+        name: 'WSJ',
+        amount: 50,
+      },
+    ],
+    keywords: [
+      {
+        keyword: 'Apple',
+        quantity: 20,
+      },
+      {
+        keyword: 'Orange',
+        quantity: 10,
+      },
+      {
+        keyword: 'Watermelon',
+        quantity: 50,
+      },
+      {
+        keyword: 'Grapes',
+        quantity: 20,
+      },
+      {
+        keyword: 'Banana',
+        quantity: 10,
+      },
+      {
+        keyword: 'Chocolate',
+        quantity: 100,
+      },
+    ],
+  },
+];
+
+export { newsData, topicsData };

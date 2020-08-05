@@ -3,7 +3,10 @@
   fluid
   class="pa-5"
   >
-    <v-card flat>
+    <v-card
+      flat
+      class="py-5 px-15"
+    >
       <v-row justify="center">
         <v-col cols="12">
           <v-row>
@@ -22,7 +25,7 @@
               class="pb-0"
             >
               <v-img
-                max-height="500"
+                max-height="400"
                 :src="article.image"
               />
             </v-col>
