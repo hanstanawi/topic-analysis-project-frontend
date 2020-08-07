@@ -21,7 +21,10 @@
     <!-- HISTOGRAM & KEYWORDS LIST -->
       <v-row>
       <v-col cols="4">
-
+        <keyword-list />
+      </v-col>
+      <v-col cols="8">
+        <bar-chart />
       </v-col>
     </v-row>
   </v-container>
@@ -29,23 +32,24 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import TopicsList from '../components/topicDetection/TopicsList.vue';
 import PieChart from '../components/charts/PieChart.vue';
+import BarChart from '../components/charts/BarChart.vue';
+import TopicsList from '../components/topicDetection/TopicsList.vue';
+import KeywordList from '../components/topicDetection/KeywordList.vue';
 
 export default {
   name: 'TopicDetectionView',
   components: {
     TopicsList,
     PieChart,
+    KeywordList,
+    BarChart,
   },
   computed: {
     ...mapGetters({
       pieChartStats: 'getTopicPieChartStats',
       topics: 'getTopicsData',
     }),
-  },
-  created() {
-    console.log(this.topics);
   },
 };
 </script>

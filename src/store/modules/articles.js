@@ -39,7 +39,7 @@ const actions = {
     }
   },
   getSingleArticle({ commit, state }, articleId) {
-    if (articleId === state.article.id) {
+    if (articleId === state.article.url) {
       return state.article;
     }
     return articlesAPI.getSingleArticle(articleId)

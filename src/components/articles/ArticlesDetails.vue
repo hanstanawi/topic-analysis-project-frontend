@@ -1,7 +1,7 @@
 <template>
- <v-container
-  fluid
-  class="pa-5"
+  <v-container
+    fluid
+    class="pa-5"
   >
     <v-card
       flat
@@ -11,11 +11,9 @@
         <v-col cols="12">
           <v-row>
             <v-col cols="12">
-              <div
-                class="text-left ml-4 text-h4 font-weight-medium"
-              >
+              <div class="text-left ml-4 text-h4 font-weight-medium">
                 {{ article.title }}
-               </div>
+              </div>
             </v-col>
           </v-row>
           <v-row justify="center">
@@ -34,28 +32,19 @@
             <v-row>
               <v-col cols="12">
                 <div class="text-left">
-                  <span class="font-weight-bold body-1">Categories:</span>
-                  <span v-if="article.category1">
-                    <v-chip
-                      class="mx-2 d-flex-inline"
-                      color="primary"
-                    >
-                      {{ article.category1 }}
+                  <span class="font-weight-bold body-1">Board:</span>
+                  <span v-if="article.board">
+                    <v-chip class="mx-2 d-flex-inline" color="primary">
+                      {{ article.board }}
                     </v-chip>
                   </span>
                   <span v-if="article.category2">
-                    <v-chip
-                      class="ma-2 d-flex-inline"
-                      color="primary"
-                    >
+                    <v-chip class="ma-2 d-flex-inline" color="primary">
                       {{ article.category2 }}
                     </v-chip>
                   </span>
                   <span v-if="article.category3">
-                    <v-chip
-                      class="ma-2 d-flex-inline"
-                      color="primary"
-                    >
+                    <v-chip class="ma-2 d-flex-inline" color="primary">
                       {{ article.category3 }}
                     </v-chip>
                   </span>
@@ -73,7 +62,7 @@
         </v-col>
       </v-row>
     </v-card>
- </v-container>
+  </v-container>
 </template>
 
 <script>
@@ -88,6 +77,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

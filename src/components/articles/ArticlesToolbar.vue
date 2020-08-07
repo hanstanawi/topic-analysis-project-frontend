@@ -167,6 +167,7 @@ export default {
   computed: {
     singleKeyword() {
       const singleKeyword = this.tags.slice(0, 2).map((tag) => tag.text);
+      console.log(singleKeyword);
       return singleKeyword.toString();
     },
   },

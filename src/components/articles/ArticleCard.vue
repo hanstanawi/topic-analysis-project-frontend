@@ -12,7 +12,7 @@
     </v-responsive>
     <router-link
       tag="p"
-      :to="{ name: 'ArticleDetails', params: { id: article.id }}"
+      :to="{ name: 'ArticleDetails', params: { id: article.url }}"
     >
       <v-card-title
       class="article-title pb-0"
@@ -33,9 +33,9 @@
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
-          >{{ article.category1 }}
+          >{{ article.board }}
         </v-chip>
-        <v-chip
+        <!-- <v-chip
           small
           class="mx-1 d-flex-inline white--text"
           color="primary"
@@ -46,7 +46,7 @@
           class="mx-1 d-flex-inline white--text"
           color="primary"
           >{{ article.category3 }}
-        </v-chip>
+        </v-chip> -->
       </v-col>
     </v-row>
     <v-card-text

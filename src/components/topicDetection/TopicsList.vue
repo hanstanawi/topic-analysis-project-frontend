@@ -2,7 +2,6 @@
 <div>
   <v-card
     max-width="550px"
-    height="100%"
     flat
     class="mx-auto"
   >

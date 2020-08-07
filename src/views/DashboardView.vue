@@ -3,6 +3,7 @@
     fluid
   >
     <v-card
+      v-if="!loading"
       class="px-2"
       height="100%"
     >
@@ -70,6 +71,11 @@
         </v-col>
       </v-row>
     </v-card>
+    <v-row v-else>
+      <v-col cols="12">
+        <main-loading />
+      </v-col>
+    </v-row>
     <article-details-modal
       :article="article"
       :show-article-details="openArticleModal"
@@ -85,6 +91,7 @@ import BarChart from '../components/charts/BarChart.vue';
 import LineChart from '../components/charts/LineChart.vue';
 import ArticlesList from '../components/dashboard/ArticlesList.vue';
 import ArticleDetailsModal from '../components/dashboard/ArticleDetailsModal.vue';
+import MainLoading from '../components/animations/MainLoading.vue';
 
 export default {
   name: 'Dashboard',
@@ -94,11 +101,13 @@ export default {
     LineChart,
     ArticlesList,
     ArticleDetailsModal,
+    MainLoading,
   },
   data() {
     return {
       openArticleModal: false,
       article: {},
+      loading: false,
     };
   },
   computed: {
@@ -110,7 +119,9 @@ export default {
     }),
   },
   async created() {
+    this.loading = true;
     await this.fetchArticles();
+    this.loading = false;
   },
   methods: {
     ...mapActions({

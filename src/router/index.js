@@ -23,7 +23,7 @@ const routes = [
     props: true,
     beforeEnter(routeTo, routeFrom, next) {
       // Passing params as props using Route Guards
-      store.dispatch('getSingleArticle', routeTo.params.id, true)
+      store.dispatch('getSingleArticle', routeTo.params.id)
         .then((article) => {
           // eslint-disable-next-line no-param-reassign
           routeTo.params.article = article;
