@@ -10,13 +10,16 @@ const apiClient = axios.create({
 
 // Exporting the axios instance methods to be called in the store to fetch the data
 export default {
-  getAllArticles() {
-    return apiClient.get('/articles');
+  getLatestArticles(limit) {
+    return apiClient.get(`/articles?limit=${limit}`);
   },
   getSingleArticle(articleId) {
     return apiClient.get(`/article?articleId=${articleId}`);
   },
   searchArticlesWithKeyword(keyword) {
-    return apiClient.get(`/search?keyword=${keyword}`);
+    return apiClient.get(`/keyword-search?keyword=${keyword}`);
+  },
+  searchArticlesWithArticle(text) {
+    return apiClient.get(`/text-search?text=${text}`);
   },
 };

@@ -13,6 +13,7 @@
         v-model="searchTerm"
         outlined
         rounded
+        background-color="#fff"
         dense
         prepend-icon="mdi-magnify"
         prepend-inner-icon="mdi-filter-variant"
@@ -30,6 +31,7 @@
         :items="items"
         :search-input.sync="tagSearch"
         hide-selected
+        background-color="#fff"
         label="Enter a keyword"
         multiple
         small-chips
@@ -105,9 +107,10 @@
         </template>
         <template v-slot:append-outer>
           <v-btn
-            color="primary"
+            color="light-blue darken-2"
             small
-            style="transform: translate(0, -12%);"
+            class="white--text"
+            style="transform: translate(0, -7%);"
             @click="$emit('search-keyword', singleKeyword)"
           >
               Search
@@ -167,7 +170,6 @@ export default {
   computed: {
     singleKeyword() {
       const singleKeyword = this.tags.slice(0, 2).map((tag) => tag.text);
-      console.log(singleKeyword);
       return singleKeyword.toString();
     },
   },

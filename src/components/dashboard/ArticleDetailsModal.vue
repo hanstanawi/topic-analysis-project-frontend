@@ -5,7 +5,7 @@
     persistent
   >
     <v-card>
-      <v-card-title>
+      <v-card-title class="font-weight-bold">
         {{ article.title }}
         <v-spacer />
         <v-btn
@@ -20,6 +20,7 @@
       </v-card-title>
       <v-card-text
         style="overflow-y: auto; height: 500px;"
+        class="px-10"
       >
         <v-row>
           <v-col cols="12" align="center">
@@ -33,37 +34,20 @@
         <v-row>
           <v-col cols="12">
             <div class="text-left">
-              <span class="font-weight-bold body-1">Categories:</span>
-              <span v-if="article.category1">
-                <v-chip
-                  class="mx-2 d-flex-inline"
-                  color="primary"
-                >
-                  {{ article.category1 }}
-                </v-chip>
+              <span class="font-weight-bold body-1">Board:</span>
+              <span v-if="article.board">
+                {{ article.board }}
               </span>
-              <span v-if="article.category2">
-                <v-chip
-                  class="ma-2 d-flex-inline"
-                  color="primary"
-                >
-                  {{ article.category2 }}
-                </v-chip>
-              </span>
-              <span v-if="article.category3">
-                <v-chip
-                  class="ma-2 d-flex-inline"
-                  color="primary"
-                >
-                  {{ article.category3 }}
-                </v-chip>
-              </span>
+            </div>
+            <div class="text-left body-1">
+              <span class="font-weight-bold">Date:</span>
+              {{ formatDate(article.tp) }}
             </div>
             <div class="text-left body-1">
               <span class="font-weight-bold">Author:</span>
               {{ article.author }}
             </div>
-            <div class="text-justify mt-3">
+            <div class="text-justify mt-3 body-1">
               {{ article.content }}
             </div>
           </v-col>
@@ -74,6 +58,8 @@
 </template>
 
 <script>
+import moment from 'moment-timezone';
+
 export default {
   name: 'ArticleDetailsModal',
   props: {
@@ -84,6 +70,15 @@ export default {
     showArticleDetails: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    formatDate(date) {
+      if (!date) {
+        return '';
+      }
+      const chineseLocaleDate = moment(date).locale('zh_tw');
+      return chineseLocaleDate.format('LLL');
     },
   },
 };

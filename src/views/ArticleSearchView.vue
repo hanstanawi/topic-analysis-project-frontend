@@ -1,25 +1,33 @@
 <template>
   <v-container
     class="my-5 px-10"
-    fluid>
+    fluid
+  >
     <div v-if="!loading">
-      <articles-toolbar
-        @updateSearchValue="searchValue = $event"
-        @search-keyword="fetchSearchResults($event)"
-      />
-      <!-- LATEST ARTICLES -->
+      <!-- TEXT EDITOR -->
       <div v-if="!searchedResults">
-        <span class="text-left text-h6 ml-4">Latest Articles</span>
-        <v-row>
+        <v-row justify="center">
           <v-col
-            cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-            xl="2"
-            v-for="article in filteredList"
-            :key="article.id">
-            <article-card :article="article"/>
+            cols="10"
+          >
+            <v-card height="76vh" flat>
+              <vue-editor
+                v-model="content"
+                placeholder="Enter a long text or article"
+                style="background-color: #fff; height: 70vh; border: none"
+              />
+              <v-divider></v-divider>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  class="mr-5"
+                  color="primary"
+                  @click="fetchSearchResults(strippedContent); content = ''"
+                >
+                Search
+              </v-btn>
+              </v-card-actions>
+            </v-card>
           </v-col>
         </v-row>
       </div>
@@ -34,7 +42,7 @@
             class="back-button text-left body-1"
             @click="searchedResults = false"
           >
-            Back to Latest Articles
+            Back to Text Editor
           </p>
         </v-row>
         <v-row>
@@ -44,7 +52,7 @@
             md="4"
             lg="3"
             xl="2"
-            v-for="article in filteredList"
+            v-for="article in searchResultList"
             :key="article.id"
           >
             <article-card :article="article"/>
@@ -85,29 +93,32 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import ArticleCard from '../components/articles/ArticleCard.vue';
-import ArticlesToolbar from '../components/articles/ArticlesToolbar.vue';
+import { VueEditor } from 'vue2-editor';
 import MainLoading from '../components/animations/MainLoading.vue';
+import ArticleCard from '../components/articles/ArticleCard.vue';
 
 export default {
-  name: 'ArticlesView',
+  name: 'ArticleSearchView',
+  components: {
+    VueEditor,
+    MainLoading,
+    ArticleCard,
+  },
   data() {
     return {
-      searchValue: '',
-      searchedResults: false,
+      content: '',
       loading: false,
+      searchedResults: false,
     };
-  },
-  components: {
-    ArticlesToolbar,
-    ArticleCard,
-    MainLoading,
   },
   computed: {
     ...mapGetters({
-      articlesList: 'getArticlesViewList',
-      searchedArticlesList: 'getSearchedArticlesWithKeyword',
+      searchedArticlesList: 'getSearchedArticlesWithArticle',
     }),
+    strippedContent() {
+      const regex = /(<([^>]+)>)/ig;
+      return this.content.replace(regex, '');
+    },
     searchResultList: {
       get() {
         return this.searchedArticlesList;
@@ -116,39 +127,16 @@ export default {
         return newResult;
       },
     },
-    filteredList() {
-      if (!this.searchedResults) {
-        const searchValue = this.searchValue.toLowerCase();
-        if (this.searchValue === '' || !this.searchValue) {
-          return this.articlesList;
-        }
-        // eslint-disable-next-line max-len
-        const searchValueFilter = this.articlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
-        return searchValueFilter;
-      }
-      const searchValue = this.searchValue.toLowerCase();
-      if (this.searchValue === '' || !this.searchValue) {
-        return this.searchResultList;
-      }
-      // eslint-disable-next-line max-len
-      const searchValueFilter = this.searchResultList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
-      return searchValueFilter;
-    },
-  },
-  async created() {
-    this.loading = true;
-    await this.fetchArticles(10);
-    this.loading = false;
+
   },
   methods: {
     ...mapActions({
-      fetchArticles: 'getTenLatestArticles',
-      searchArticlesWithKeyword: 'searchArticlesWithKeyword',
+      searchArticlesWithKeyword: 'searchArticlesWithArticle',
     }),
-    async fetchSearchResults(keyword) {
+    async fetchSearchResults(text) {
       this.loading = true;
-      await this.searchArticlesWithKeyword(keyword);
-      if (!keyword || keyword === '') {
+      await this.searchArticlesWithKeyword(text);
+      if (!text || text === '') {
         this.searchResultList = [];
       }
       this.loading = false;
@@ -159,6 +147,7 @@ export default {
 </script>
 
 <style scoped>
+@import "~vue2-editor/dist/vue2-editor.css";
 .back-button {
   cursor: pointer;
 }

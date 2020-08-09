@@ -5,14 +5,10 @@
       height="100%"
       flat
       outlined
-      class="mx-auto"
-    >
+      class="mx-auto">
       <!-- TOOLBAR -->
-      <v-toolbar
-        color="primary"
-        dark
-      >
-        <v-toolbar-title>Latest Articles</v-toolbar-title>
+      <v-toolbar color="light-blue darken-2" dark>
+        <v-toolbar-title>Top 5 Latest Articles</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <!-- ITEMS -->
@@ -27,21 +23,19 @@
                 <v-list-item-content>
                   <v-list-item-title
                     v-text="article.title"
-                    class="text-left title"
-                  >
-                  </v-list-item-title>
+                    class="text-left title font-weight-bold"
+                  />
+                  <v-list-item-subtitle
+                    class="text--primary text-left my-2"
+                    v-text="formatDate(article.tp)" />
                   <v-list-item-subtitle
                     class="text--primary"
                     v-text="article.content"
-                  >
-                  </v-list-item-subtitle>
+                  />
                 </v-list-item-content>
               </template>
             </v-list-item>
-            <v-divider
-              v-if="index + 1 < articlesList.length"
-              :key="index"
-            />
+            <v-divider v-if="index + 1 < articlesList.length" :key="index" />
           </template>
         </v-list>
       </v-card-text>
@@ -50,6 +44,8 @@
 </template>
 
 <script>
+import moment from 'moment-timezone';
+
 export default {
   name: 'ArticlesList',
   props: {
@@ -62,6 +58,15 @@ export default {
     return {
       showArticleDetails: false,
     };
+  },
+  methods: {
+    formatDate(date) {
+      if (!date) {
+        return '';
+      }
+      const chineseLocaleDate = moment(date).locale('zh_tw');
+      return chineseLocaleDate.format('LLL');
+    },
   },
 };
 </script>

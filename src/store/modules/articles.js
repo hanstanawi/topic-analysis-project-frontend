@@ -3,37 +3,59 @@
 import articlesAPI from '../../api/articlesAPI';
 
 const state = {
-  articlesList: [],
-  searchResultArticlesList: [],
+  dashboardArticlesList: [],
+  articlesViewList: [],
+  searchResultArticlesWithKeyword: [],
+  searchResultArticlesWithArticle: [],
   article: {},
 };
 
 const mutations = {
-  SET_ARTICLES(state, articles) {
-    state.articlesList = articles;
+  SET_DASHBOARD_ARTICLES(state, articles) {
+    state.dashboardArticlesList = articles;
+  },
+  SET_ARTICLES_VIEW(state, articles) {
+    state.articlesViewList = articles;
   },
   SET_ARTICLE(state, article) {
     state.article = article;
   },
-  SET_SEARCHED_ARTICLES(state, articles) {
-    state.searchResultArticlesList = articles;
+  SET_SEARCHED_KEYWORD_ARTICLES(state, articles) {
+    state.searchResultsWithKeyword = articles;
+  },
+  SET_SEARCHED_ARTICLES_LIST(state, articles) {
+    state.searchResultArticlesWithArticle = articles;
   },
 };
 
 const getters = {
-  getArticlesList() {
-    return state.articlesList;
+  getDashboardArticlesList() {
+    return state.dashboardArticlesList;
   },
-  getSearchedArticlesList() {
-    return state.searchResultArticlesList;
+  getArticlesViewList() {
+    return state.articlesViewList;
+  },
+  getSearchedArticlesWithKeyword() {
+    return state.searchResultArticlesWithKeyword;
+  },
+  getSearchedArticlesWithArticle() {
+    return state.searchResultArticlesWithArticle;
   },
 };
 
 const actions = {
-  async getAllArticles({ commit }) {
+  async getFiveLatestArticles({ commit }, limit) {
     try {
-      const articles = await articlesAPI.getAllArticles();
-      commit('SET_ARTICLES', articles.data);
+      const articles = await articlesAPI.getLatestArticles(limit);
+      commit('SET_DASHBOARD_ARTICLES', articles.data);
+    } catch (err) {
+      throw err;
+    }
+  },
+  async getTenLatestArticles({ commit }, limit) {
+    try {
+      const articles = await articlesAPI.getLatestArticles(limit);
+      commit('SET_ARTICLES_VIEW', articles.data);
     } catch (err) {
       throw err;
     }
@@ -54,7 +76,20 @@ const actions = {
   async searchArticlesWithKeyword({ commit }, keyword) {
     try {
       const articles = await articlesAPI.searchArticlesWithKeyword(keyword);
-      commit('SET_SEARCHED_ARTICLES', articles.data);
+      // eslint-disable-next-line no-underscore-dangle
+      const articlesArray = articles.data.map((article) => article._source);
+      commit('SET_SEARCHED_KEYWORD_ARTICLES', articlesArray);
+    } catch (err) {
+      throw err;
+    }
+  },
+  async searchArticlesWithArticle({ commit }, text) {
+    try {
+      const articles = await articlesAPI.searchArticlesWithArticle(text);
+      console.log(articles);
+      // eslint-disable-next-line no-underscore-dangle
+      const articlesArray = articles.data.map((article) => article._source);
+      commit('SET_SEARCHED_ARTICLES_LIST', articlesArray);
     } catch (err) {
       throw err;
     }

@@ -14,6 +14,9 @@
               <div class="text-left ml-4 text-h4 font-weight-medium">
                 {{ article.title }}
               </div>
+              <div class="text-left ml-4 content font-weight-medium">
+                {{ formatDate(article.tp) }}
+              </div>
             </v-col>
           </v-row>
           <v-row justify="center">
@@ -34,7 +37,10 @@
                 <div class="text-left">
                   <span class="font-weight-bold body-1">Board:</span>
                   <span v-if="article.board">
-                    <v-chip class="mx-2 d-flex-inline" color="primary">
+                    <v-chip
+                      class="mx-2 d-flex-inline white--text"
+                      color="light-blue darken-2"
+                    >
                       {{ article.board }}
                     </v-chip>
                   </span>
@@ -53,7 +59,7 @@
                   <span class="font-weight-bold">Author:</span>
                   {{ article.author }}
                 </div>
-                <div class="text-justify mt-3">
+                <div class="text-justify mt-3 body-1">
                   {{ article.content }}
                 </div>
               </v-col>
@@ -66,12 +72,23 @@
 </template>
 
 <script>
+import moment from 'moment-timezone';
+
 export default {
   name: 'ArticlesDetails',
   props: {
     article: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    formatDate(date) {
+      if (!date) {
+        return '';
+      }
+      const chineseLocaleDate = moment(date).locale('zh_tw');
+      return chineseLocaleDate.format('LLL');
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
-  <v-card
+  <v-container
     max-width="700px"
-    flat
+    fluid
   >
     <v-row>
       <v-col cols="11">
@@ -9,10 +9,11 @@
           type="bar"
           :options="chartOptions"
           :series="series"
+          :height="height"
         />
       </v-col>
     </v-row>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
   props: {
     height: {
       type: Number,
-      default: null,
+      default: 250,
     },
     width: {
       type: Number,
@@ -41,6 +42,10 @@ export default {
       required: true,
       default: () => [],
     },
+    stacked: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -50,6 +55,7 @@ export default {
           toolbar: {
             show: false,
           },
+          stacked: this.stacked,
         },
         xaxis: {
           categories: this.categories,
@@ -58,6 +64,7 @@ export default {
           text: this.title,
           align: 'left',
         },
+
       },
     };
   },

@@ -4,7 +4,7 @@
       <v-col cols="12" align="start">
         <apexchart
           type="donut"
-          height="400"
+          height="300"
           :options="chartOptions"
           :series="series"
         />
@@ -18,10 +18,6 @@ export default {
   name: 'PieChart',
   props: {
     height: {
-      type: Number,
-      default: null,
-    },
-    width: {
       type: Number,
       default: null,
     },

@@ -73,7 +73,9 @@
     </v-card>
     <v-row v-else>
       <v-col cols="12">
-        <main-loading />
+        <main-loading
+          style="transform: translate(0, 300%)"
+        />
       </v-col>
     </v-row>
     <article-details-modal
@@ -112,7 +114,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      articlesList: 'getArticlesList',
+      articlesList: 'getDashboardArticlesList',
       lineChartStats: 'getDashboardLineChartStats',
       barChartStats: 'getDashboardBarChartStats',
       areaChartStats: 'getDashboardAreaChartStats',
@@ -120,12 +122,12 @@ export default {
   },
   async created() {
     this.loading = true;
-    await this.fetchArticles();
+    await this.fetchArticles(5);
     this.loading = false;
   },
   methods: {
     ...mapActions({
-      fetchArticles: 'getAllArticles',
+      fetchArticles: 'getFiveLatestArticles',
     }),
     openArticleDetails(article) {
       this.article = article;

@@ -48,6 +48,32 @@ const state = {
     title: 'Top 5 Sources',
     series: [44, 55, 41, 17, 15],
   },
+  topicBarChartStats: {
+    series: [
+      {
+        name: 'Apple',
+        data: [44, 55, 41, 37, 22, 43, 21, 20, 50, 20],
+      },
+      {
+        name: 'Banana',
+        data: [53, 32, 33, 52, 13, 43, 32, 20, 60, 10],
+      },
+      {
+        name: 'Orange',
+        data: [12, 17, 11, 9, 15, 11, 20, 15, 12, 11],
+      },
+      {
+        name: 'Watermelon',
+        data: [9, 7, 5, 8, 6, 9, 4, 20, 11, 15],
+      },
+      {
+        name: 'Grape',
+        data: [25, 12, 19, 32, 25, 24, 10, 2, 10, 30],
+      },
+    ],
+    stacked: true,
+    categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
+  },
 };
 
 const mutations = {
@@ -66,6 +92,9 @@ const getters = {
   },
   getTopicPieChartStats() {
     return state.topicPieChartStats;
+  },
+  getTopicBarChartStats() {
+    return state.topicBarChartStats;
   },
 };
 

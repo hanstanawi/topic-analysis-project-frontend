@@ -17,6 +17,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/ArticlesView.vue'),
   },
   {
+    path: '/articles-search',
+    name: 'Article Search',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ArticleSearchView.vue'),
+  },
+  {
     path: '/article/:id',
     name: 'ArticleDetails',
     component: () => import(/* webpackChunkName: "movie-details" */'../components/articles/ArticlesDetails.vue'),

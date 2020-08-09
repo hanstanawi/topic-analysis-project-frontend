@@ -9,16 +9,20 @@
       width="200"
       permanent
       overflow
+      color="white"
       >
       <v-list
         dense
+        color="white"
       >
           <v-list-item
             v-for="link in links"
             :key="link.label"
+            color="white"
             route
             :to="link.url"
             dense
+            active-class="blue lighten-5"
           >
             <v-list-item-action>
               <v-icon color="grey darken-2">{{ link.icon }}</v-icon>
@@ -55,9 +59,14 @@ export default {
           icon: 'mdi-chart-histogram',
         },
         {
-          label: 'Articles Search',
+          label: 'Keyword Search',
           url: '/articles',
-          icon: 'mdi-feature-search',
+          icon: 'mdi-comment-search',
+        },
+        {
+          label: 'Articles Search',
+          url: '/articles-search',
+          icon: 'mdi-text-search',
         },
       ],
     };

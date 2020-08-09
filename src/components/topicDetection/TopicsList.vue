@@ -1,16 +1,16 @@
 <template>
 <div>
   <v-card
-    max-width="550px"
     flat
+    height="300px"
     class="mx-auto"
   >
-    <v-card-title>
-      <div>Top 5 Topics</div>
+    <v-card-title class="py-0">
+      <div class="ml-3">Top 5 Topics</div>
     </v-card-title>
     <!-- ITEMS -->
     <v-card-text>
-      <v-list two-line>
+      <v-list>
       <template v-for="(topic, index) in topicsList">
         <v-list-item
           :key="topic.id"
@@ -20,7 +20,7 @@
             <v-list-item-content>
               <v-list-item-title
                 v-text="topic.title"
-                class="text-left title"
+                class="text-left text-h6"
               >
               </v-list-item-title>
               <v-list-item-subtitle

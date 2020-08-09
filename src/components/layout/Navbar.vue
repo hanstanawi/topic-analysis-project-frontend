@@ -4,14 +4,17 @@
     app
     clipped-left
     clipped-right
+    color="light-blue darken-2"
   >
      <v-app-bar-nav-icon
+      color="white"
       @click="miniVariant = !miniVariant"
       >
      </v-app-bar-nav-icon>
-     <v-toolbar-title class="font-weight-medium">
+     <v-toolbar-title class="white--text">
        <v-icon
         left
+        color="white"
         class="mx-0 pb-1"
         >
           mdi-newspaper-variant
