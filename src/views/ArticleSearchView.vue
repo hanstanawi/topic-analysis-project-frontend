@@ -20,8 +20,8 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
-                  class="mr-5"
-                  color="primary"
+                  class="mr-5 white--text"
+                  color="light-blue darken-2"
                   @click="fetchSearchResults(strippedContent); content = ''"
                 >
                 Search

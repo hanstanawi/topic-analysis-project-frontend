@@ -21,10 +21,14 @@ const mutations = {
     state.article = article;
   },
   SET_SEARCHED_KEYWORD_ARTICLES(state, articles) {
-    state.searchResultsWithKeyword = articles;
+    state.searchResultArticlesWithKeyword = articles;
   },
   SET_SEARCHED_ARTICLES_LIST(state, articles) {
     state.searchResultArticlesWithArticle = articles;
+  },
+  CLEAR_SEARCHED_ARTICLES_LIST(state) {
+    state.searchResultArticlesWithKeyword = [];
+    state.searchResultArticlesWithArticle = [];
   },
 };
 
@@ -61,10 +65,11 @@ const actions = {
     }
   },
   getSingleArticle({ commit, state }, articleId) {
-    if (articleId === state.article.url) {
+    if (articleId === state.article.id) {
       return state.article;
     }
-    return articlesAPI.getSingleArticle(articleId)
+    return articlesAPI
+      .getSingleArticle(articleId)
       .then((res) => {
         commit('SET_ARTICLE', res.data);
         return res.data;
@@ -77,8 +82,9 @@ const actions = {
     try {
       const articles = await articlesAPI.searchArticlesWithKeyword(keyword);
       // eslint-disable-next-line no-underscore-dangle
-      const articlesArray = articles.data.map((article) => article._source);
-      commit('SET_SEARCHED_KEYWORD_ARTICLES', articlesArray);
+      // const articlesArray = articles.data.map((article) => article._source);
+      commit('CLEAR_SEARCHED_ARTICLES_LIST');
+      commit('SET_SEARCHED_KEYWORD_ARTICLES', articles.data);
     } catch (err) {
       throw err;
     }
@@ -86,10 +92,10 @@ const actions = {
   async searchArticlesWithArticle({ commit }, text) {
     try {
       const articles = await articlesAPI.searchArticlesWithArticle(text);
-      console.log(articles);
       // eslint-disable-next-line no-underscore-dangle
-      const articlesArray = articles.data.map((article) => article._source);
-      commit('SET_SEARCHED_ARTICLES_LIST', articlesArray);
+      // const articlesArray = articles.data.map((article) => article._source);
+      commit('CLEAR_SEARCHED_ARTICLES_LIST');
+      commit('SET_SEARCHED_ARTICLES_LIST', articles.data);
     } catch (err) {
       throw err;
     }

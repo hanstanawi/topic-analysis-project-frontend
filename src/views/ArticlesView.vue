@@ -5,7 +5,8 @@
     <div v-if="!loading">
       <articles-toolbar
         @updateSearchValue="searchValue = $event"
-        @search-keyword="fetchSearchResults($event)"
+        @search-keyword="fetchKeywordSearchResults($event)"
+        @search-text="fetchTextSearchResults($event)"
       />
       <!-- LATEST ARTICLES -->
       <div v-if="!searchedResults">
@@ -51,7 +52,11 @@
           </v-col>
         </v-row>
       </div>
-      <v-row v-if="!searchedArticlesList.length && searchedResults">
+      <v-row
+        v-if="!searchedKeywordArticlesList.length
+          && !searchedTextArticlesList.length
+          && searchedResults"
+      >
         <v-col
           align="center"
           cols="12"
@@ -106,11 +111,20 @@ export default {
   computed: {
     ...mapGetters({
       articlesList: 'getArticlesViewList',
-      searchedArticlesList: 'getSearchedArticlesWithKeyword',
+      searchedKeywordArticlesList: 'getSearchedArticlesWithKeyword',
+      searchedTextArticlesList: 'getSearchedArticlesWithArticle',
     }),
-    searchResultList: {
+    searchKeywordResultList: {
       get() {
-        return this.searchedArticlesList;
+        return this.searchedKeywordArticlesList;
+      },
+      set(newResult) {
+        return newResult;
+      },
+    },
+    searchTextResultList: {
+      get() {
+        return this.searchedTextArticlesList;
       },
       set(newResult) {
         return newResult;
@@ -126,12 +140,21 @@ export default {
         const searchValueFilter = this.articlesList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
         return searchValueFilter;
       }
+      if (this.searchedResults && this.searchKeywordResultList.length) {
+        const searchValue = this.searchValue.toLowerCase();
+        if (this.searchValue === '' || !this.searchValue) {
+          return this.searchKeywordResultList;
+        }
+        // eslint-disable-next-line max-len
+        const searchValueFilter = this.searchKeywordResultList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
+        return searchValueFilter;
+      }
       const searchValue = this.searchValue.toLowerCase();
       if (this.searchValue === '' || !this.searchValue) {
-        return this.searchResultList;
+        return this.searchTextResultList;
       }
       // eslint-disable-next-line max-len
-      const searchValueFilter = this.searchResultList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
+      const searchValueFilter = this.searchTextResultList.filter((news) => news.title.toLowerCase().match(searchValue) || news.content.toLowerCase().match(searchValue));
       return searchValueFilter;
     },
   },
@@ -144,12 +167,22 @@ export default {
     ...mapActions({
       fetchArticles: 'getTenLatestArticles',
       searchArticlesWithKeyword: 'searchArticlesWithKeyword',
+      searchArticlesWithArticle: 'searchArticlesWithArticle',
     }),
-    async fetchSearchResults(keyword) {
+    async fetchKeywordSearchResults(keyword) {
       this.loading = true;
       await this.searchArticlesWithKeyword(keyword);
       if (!keyword || keyword === '') {
-        this.searchResultList = [];
+        this.searchKeywordResultList = [];
+      }
+      this.loading = false;
+      this.searchedResults = true;
+    },
+    async fetchTextSearchResults(keyword) {
+      this.loading = true;
+      await this.searchArticlesWithArticle(keyword);
+      if (!keyword || keyword === '') {
+        this.searchTextResultList = [];
       }
       this.loading = false;
       this.searchedResults = true;

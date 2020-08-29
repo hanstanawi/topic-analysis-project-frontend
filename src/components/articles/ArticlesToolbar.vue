@@ -107,13 +107,24 @@
         </template>
         <template v-slot:append-outer>
           <v-btn
+            v-if="tags.length > 1"
             color="light-blue darken-2"
             small
             class="white--text"
             style="transform: translate(0, -7%);"
-            @click="$emit('search-keyword', singleKeyword)"
+            @click="$emit('search-text', keyword)"
           >
-              Search
+            Search
+          </v-btn>
+          <v-btn
+            v-else
+            color="light-blue darken-2"
+            small
+            class="white--text"
+            style="transform: translate(0, -7%);"
+            @click="$emit('search-keyword', keyword)"
+          >
+            Search
           </v-btn>
         </template>
       </v-combobox>
@@ -168,7 +179,11 @@ export default {
     },
   },
   computed: {
-    singleKeyword() {
+    keyword() {
+      if (this.tags.length > 1) {
+        const multipleKeywords = this.tags.map((tag) => tag.text);
+        return multipleKeywords.toString().split(',').join(' ');
+      }
       const singleKeyword = this.tags.slice(0, 2).map((tag) => tag.text);
       return singleKeyword.toString();
     },

@@ -11,31 +11,33 @@
     <!-- ITEMS -->
     <v-card-text>
       <v-list>
-      <template v-for="(topic, index) in topicsList">
-        <v-list-item
-          :key="topic.id"
-          @click="$emit('selected-topic', topic)"
-        >
-          <template>
-            <v-list-item-content>
-              <v-list-item-title
-                v-text="topic.title"
-                class="text-left text-h6"
-              >
-              </v-list-item-title>
-              <v-list-item-subtitle
-                class="text--primary"
-                v-text="topic.content"
-              >
-              </v-list-item-subtitle>
-            </v-list-item-content>
+        <v-list-item-group v-model="item" color="primary">
+          <template v-for="(topic, index) in topicsList">
+            <v-list-item
+              :key="topic.id"
+              @click="$emit('selected-topic', topic)"
+            >
+              <template>
+                <v-list-item-content>
+                  <v-list-item-title
+                    v-text="topic.title"
+                    class="text-left font-weight-bold body-1"
+                  >
+                  </v-list-item-title>
+                  <v-list-item-subtitle
+                    class="text--primary"
+                    v-text="topic.content"
+                  >
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </template>
+            </v-list-item>
+            <v-divider
+              v-if="index + 1 < topicsList.length"
+              :key="index"
+            />
           </template>
-        </v-list-item>
-        <v-divider
-          v-if="index + 1 < topicsList.length"
-          :key="index"
-        />
-       </template>
+        </v-list-item-group>
       </v-list>
     </v-card-text>
   </v-card>
@@ -55,6 +57,7 @@ export default {
   data() {
     return {
       showArticleDetails: false,
+      item: 0,
     };
   },
 };

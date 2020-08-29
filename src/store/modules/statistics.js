@@ -28,10 +28,6 @@ const state = {
         name: 'series-1',
         data: [30, 40, 35, 50, 49, 60, 70, 91],
       },
-      {
-        name: 'series-2',
-        data: [30, 50, 20, 60, 30, 10, 90, 100],
-      },
     ],
   },
   dashboardAreaChartStats: {

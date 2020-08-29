@@ -9,7 +9,7 @@
     </v-responsive>
     <router-link
       tag="p"
-      :to="{ name: 'ArticleDetails', params: { id: article.url } }"
+      :to="{ name: 'ArticleDetails', params: { id: article.id } }"
     >
       <v-card-title class="article-title pb-0 text-left font-weight-bold">
         {{ article.title }}

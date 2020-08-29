@@ -1,12 +1,18 @@
 <template>
   <v-container fluid>
     <!-- TOP 5 TOPICS & SOURCE CHART -->
-    <v-card flat height="400">
+    <v-card flat height="370">
       <v-row justify="space-between">
         <v-col cols="5" align="start">
-          <topics-list :topics-list="topics" @selected-topic="selectTopicDetails" />
+          <topics-list
+            :topics-list="topics"
+            @selected-topic="selectTopicDetails"
+          />
         </v-col>
-        <v-col cols="7" align="end">
+        <v-col
+          cols="7"
+          align="end"
+        >
           <pie-chart :series="pieChartStats.series" />
         </v-col>
       </v-row>
@@ -31,7 +37,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import PieChart from '../components/charts/PieChart.vue';
 import BarChart from '../components/charts/BarChart.vue';
 import TopicsList from '../components/topicDetection/TopicsList.vue';
@@ -57,7 +63,13 @@ export default {
       topics: 'getTopicsData',
     }),
   },
+  async mounted() {
+    await this.fetchTopics();
+  },
   methods: {
+    ...mapActions({
+      fetchTopics: 'fetchTopics',
+    }),
     selectTopicDetails(topic) {
       this.topic = topic;
     },

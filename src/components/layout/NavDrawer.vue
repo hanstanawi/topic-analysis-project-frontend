@@ -64,7 +64,7 @@ export default {
           icon: 'mdi-comment-search',
         },
         {
-          label: 'Articles Search',
+          label: 'Article Search',
           url: '/articles-search',
           icon: 'mdi-text-search',
         },

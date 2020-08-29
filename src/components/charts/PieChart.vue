@@ -4,7 +4,7 @@
       <v-col cols="12" align="start">
         <apexchart
           type="donut"
-          height="300"
+          height="280"
           :options="chartOptions"
           :series="series"
         />
