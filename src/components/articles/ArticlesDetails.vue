@@ -3,6 +3,15 @@
     fluid
     class="pa-5"
   >
+    <div>
+      <v-btn
+        @click="closeDetails"
+        text
+        small
+      >
+        Back to Articles
+      </v-btn>
+    </div>
     <v-card
       flat
       class="py-5 px-15"
@@ -89,6 +98,9 @@ export default {
       }
       const chineseLocaleDate = moment(date).locale('zh_tw');
       return chineseLocaleDate.format('LLL');
+    },
+    closeDetails() {
+      this.$emit('closeArticleDetails');
     },
   },
 };

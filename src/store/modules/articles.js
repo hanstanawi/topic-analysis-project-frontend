@@ -7,7 +7,6 @@ const state = {
   articlesViewList: [],
   searchResultArticlesWithKeyword: [],
   searchResultArticlesWithArticle: [],
-  article: {},
 };
 
 const mutations = {
@@ -16,9 +15,6 @@ const mutations = {
   },
   SET_ARTICLES_VIEW(state, articles) {
     state.articlesViewList = articles;
-  },
-  SET_ARTICLE(state, article) {
-    state.article = article;
   },
   SET_SEARCHED_KEYWORD_ARTICLES(state, articles) {
     state.searchResultArticlesWithKeyword = articles;
@@ -63,20 +59,6 @@ const actions = {
     } catch (err) {
       throw err;
     }
-  },
-  getSingleArticle({ commit, state }, articleId) {
-    if (articleId === state.article.id) {
-      return state.article;
-    }
-    return articlesAPI
-      .getSingleArticle(articleId)
-      .then((res) => {
-        commit('SET_ARTICLE', res.data);
-        return res.data;
-      })
-      .catch((err) => {
-        throw err;
-      });
   },
   async searchArticlesWithKeyword({ commit }, keyword) {
     try {

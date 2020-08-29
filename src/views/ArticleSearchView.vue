@@ -32,7 +32,7 @@
         </v-row>
       </div>
       <!-- SEARCHED RESULTS -->
-      <div v-else>
+      <div v-if="searchedResults && !isArticleOpened">
         <v-row
           justify="space-between"
           class="mx-4 py-0"
@@ -55,9 +55,18 @@
             v-for="article in searchResultList"
             :key="article.id"
           >
-            <article-card :article="article"/>
+            <article-card
+              :article="article"
+              @articleSelected="openArticleDetails"
+            />
           </v-col>
         </v-row>
+      </div>
+      <div v-if="isArticleOpened">
+        <article-details
+          @closeArticleDetails="closeDetails"
+          :article="articleOpened"
+        />
       </div>
       <v-row v-if="!searchedArticlesList.length && searchedResults">
         <v-col
@@ -96,6 +105,7 @@ import { mapGetters, mapActions } from 'vuex';
 import { VueEditor } from 'vue2-editor';
 import MainLoading from '../components/animations/MainLoading.vue';
 import ArticleCard from '../components/articles/ArticleCard.vue';
+import ArticleDetails from '../components/articles/ArticlesDetails.vue';
 
 export default {
   name: 'ArticleSearchView',
@@ -103,12 +113,15 @@ export default {
     VueEditor,
     MainLoading,
     ArticleCard,
+    ArticleDetails,
   },
   data() {
     return {
       content: '',
       loading: false,
       searchedResults: false,
+      articleOpened: {},
+      isArticleOpened: false,
     };
   },
   computed: {
@@ -141,6 +154,15 @@ export default {
       }
       this.loading = false;
       this.searchedResults = true;
+    },
+    openArticleDetails(article) {
+      this.$router.push(`/articles-search/${article.url}`);
+      this.articleOpened = article;
+      this.isArticleOpened = true;
+    },
+    closeDetails() {
+      this.$router.push('/articles-search');
+      this.isArticleOpened = false;
     },
   },
 };

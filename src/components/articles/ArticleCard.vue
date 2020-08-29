@@ -7,14 +7,17 @@
     <v-responsive>
       <v-img :src="article.image" contain />
     </v-responsive>
-    <router-link
+    <!-- <router-link
       tag="p"
       :to="{ name: 'ArticleDetails', params: { id: article.id } }"
-    >
-      <v-card-title class="article-title pb-0 text-left font-weight-bold">
+    > -->
+      <v-card-title
+        class="article-title pb-0 text-left font-weight-bold"
+        @click="selectArticle"
+      >
         {{ article.title }}
       </v-card-title>
-    </router-link>
+    <!-- </router-link> -->
     <v-row
       class="my-0 py-0"
     >
@@ -63,15 +66,18 @@ export default {
       const chineseLocaleDate = moment(date).locale('zh_tw');
       return chineseLocaleDate.format('LLL');
     },
+    selectArticle() {
+      this.$emit('articleSelected', this.article);
+    },
   },
 };
 </script>
 
 <style scoped>
-p .article-title {
+.article-title {
   cursor: pointer;
 }
-p .article-title:hover {
+.article-title:hover {
   text-decoration: underline;
 }
 </style>

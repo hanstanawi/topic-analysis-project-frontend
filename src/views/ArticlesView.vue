@@ -1,7 +1,9 @@
 <template>
   <v-container
     class="my-5 px-10"
-    fluid>
+    fluid
+    v-if="!isArticleOpened"
+  >
     <div v-if="!loading">
       <articles-toolbar
         @updateSearchValue="searchValue = $event"
@@ -20,7 +22,10 @@
             xl="2"
             v-for="article in filteredList"
             :key="article.id">
-            <article-card :article="article"/>
+            <article-card
+              :article="article"
+              @articleSelected="openArticleDetails"
+            />
           </v-col>
         </v-row>
       </div>
@@ -48,7 +53,10 @@
             v-for="article in filteredList"
             :key="article.id"
           >
-            <article-card :article="article"/>
+            <article-card
+            :article="article"
+            @articleSelected="openArticleDetails"
+              />
           </v-col>
         </v-row>
       </div>
@@ -86,12 +94,19 @@
       </v-col>
     </v-row>
   </v-container>
+  <v-container v-else>
+    <articles-details
+      @closeArticleDetails="closeDetails"
+      :article="articleOpened"
+    />
+  </v-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import ArticleCard from '../components/articles/ArticleCard.vue';
 import ArticlesToolbar from '../components/articles/ArticlesToolbar.vue';
+import ArticlesDetails from '../components/articles/ArticlesDetails.vue';
 import MainLoading from '../components/animations/MainLoading.vue';
 
 export default {
@@ -101,12 +116,15 @@ export default {
       searchValue: '',
       searchedResults: false,
       loading: false,
+      articleOpened: {},
+      isArticleOpened: false,
     };
   },
   components: {
     ArticlesToolbar,
     ArticleCard,
     MainLoading,
+    ArticlesDetails,
   },
   computed: {
     ...mapGetters({
@@ -186,6 +204,15 @@ export default {
       }
       this.loading = false;
       this.searchedResults = true;
+    },
+    openArticleDetails(article) {
+      this.$router.push(`/articles/${article.url}`);
+      this.articleOpened = article;
+      this.isArticleOpened = true;
+    },
+    closeDetails() {
+      this.$router.push('/articles');
+      this.isArticleOpened = false;
     },
   },
 };

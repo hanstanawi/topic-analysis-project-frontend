@@ -13,9 +13,6 @@ export default {
   getLatestArticles(limit) {
     return apiClient.get(`/articles?limit=${limit}`);
   },
-  getSingleArticle(articleId) {
-    return apiClient.get(`/article?articleId=${articleId}`);
-  },
   searchArticlesWithKeyword(keyword) {
     return apiClient.get(`/keyword-search?keyword=${keyword}`);
   },
