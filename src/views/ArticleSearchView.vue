@@ -73,7 +73,6 @@
           align="center"
           cols="12"
         >
-
           <div
             class="text-h4 font-weight-bold"
             style="transform: translate(0, 500%)"
