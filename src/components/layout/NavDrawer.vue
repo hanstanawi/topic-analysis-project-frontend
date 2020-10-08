@@ -53,11 +53,11 @@ export default {
           url: '/',
           icon: 'mdi-view-dashboard-variant-outline',
         },
-        {
-          label: 'Topic Detection',
-          url: '/topics',
-          icon: 'mdi-chart-histogram',
-        },
+        // {
+        //   label: 'Topic Detection',
+        //   url: '/topics',
+        //   icon: 'mdi-chart-histogram',
+        // },
         {
           label: 'Keyword Search',
           url: '/articles',

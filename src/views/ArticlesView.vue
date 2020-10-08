@@ -54,9 +54,9 @@
             :key="article.id"
           >
             <article-card
-            :article="article"
-            @articleSelected="openArticleDetails"
-              />
+              :article="article"
+              @articleSelected="openArticleDetails"
+            />
           </v-col>
         </v-row>
       </div>
