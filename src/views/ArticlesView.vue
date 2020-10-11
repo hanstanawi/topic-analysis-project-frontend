@@ -12,16 +12,13 @@
       />
       <!-- LATEST ARTICLES -->
       <div v-if="!searchedResults">
-        <span class="text-left text-h6 ml-4">Latest Articles</span>
         <v-row>
+        <span class="text-left text-h6 ml-10">Headlines</span>
           <v-col
             cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-            xl="2"
             v-for="article in filteredList"
-            :key="article.id">
+            :key="article.id"
+          >
             <article-card
               :article="article"
               @articleSelected="openArticleDetails"
@@ -46,10 +43,6 @@
         <v-row>
           <v-col
             cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-            xl="2"
             v-for="article in filteredList"
             :key="article.id"
           >

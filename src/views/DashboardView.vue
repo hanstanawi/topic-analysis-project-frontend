@@ -14,27 +14,18 @@
           cols="7"
           align="end"
         >
-          <v-row justify="space-between">
+          <v-row justify="center">
             <v-col
-              cols="6"
+              cols="12"
               align="center"
+              class="pl-3"
             >
-              <!-- MOST TALKED TOPICS CHART -->
-              <area-chart
-                :series="areaChartStats.series"
-                :categories="areaChartStats.categories"
-                :title="areaChartStats.title"
-              />
-            </v-col>
-            <v-col
-              cols="6"
-              align="center"
-            >
-              <!-- RECENT SEARCHED TOPICS -->
-              <bar-chart
-                :series="barChartStats.series"
-                :categories="barChartStats.categories"
-                :title="barChartStats.title"
+              <!-- TOP 3 TOPICS -->
+              <line-chart
+                :series="lineChartStats.series"
+                :categories="lineChartStats.categories"
+                :title="lineChartStats.title"
+                :height="300"
               />
             </v-col>
           </v-row>
@@ -42,6 +33,7 @@
             <v-col
               cols="12"
               align="center"
+              class="pl-3"
             >
               <!-- TOP 3 TOPICS -->
               <line-chart
@@ -88,8 +80,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import AreaChart from '../components/charts/AreaChart.vue';
-import BarChart from '../components/charts/BarChart.vue';
 import LineChart from '../components/charts/LineChart.vue';
 import ArticlesList from '../components/dashboard/ArticlesList.vue';
 import ArticleDetailsModal from '../components/dashboard/ArticleDetailsModal.vue';
@@ -98,8 +88,6 @@ import MainLoading from '../components/animations/MainLoading.vue';
 export default {
   name: 'Dashboard',
   components: {
-    AreaChart,
-    BarChart,
     LineChart,
     ArticlesList,
     ArticleDetailsModal,

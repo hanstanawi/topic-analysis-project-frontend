@@ -16,7 +16,7 @@
                 placeholder="Enter a long text or article"
                 style="background-color: #fff; height: 70vh; border: none"
               />
-              <v-divider></v-divider>
+              <v-divider/>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn
@@ -48,10 +48,6 @@
         <v-row>
           <v-col
             cols="12"
-            sm="6"
-            md="4"
-            lg="3"
-            xl="2"
             v-for="article in searchResultList"
             :key="article.id"
           >

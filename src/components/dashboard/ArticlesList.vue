@@ -8,7 +8,7 @@
       class="mx-auto">
       <!-- TOOLBAR -->
       <v-toolbar color="light-blue darken-2" dark>
-        <v-toolbar-title>Top 5 Latest Articles</v-toolbar-title>
+        <v-toolbar-title>Most Searched Keywords</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <!-- ITEMS -->
@@ -27,7 +27,8 @@
                   />
                   <v-list-item-subtitle
                     class="text--primary text-left my-2"
-                    v-text="formatDate(article.tp)" />
+                    v-text="formatDate(article.tp)"
+                  />
                   <v-list-item-subtitle
                     class="text--primary"
                     v-text="article.content"
@@ -35,7 +36,10 @@
                 </v-list-item-content>
               </template>
             </v-list-item>
-            <v-divider v-if="index + 1 < articlesList.length" :key="index" />
+            <v-divider
+              v-if="index + 1 < articlesList.length"
+              :key="index"
+            />
           </template>
         </v-list>
       </v-card-text>
