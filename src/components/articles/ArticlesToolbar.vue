@@ -20,7 +20,7 @@
         label="Filter the Articles List"
         append-icon="mdi-close"
         @click:append="searchTerm = ''"
-        @click:prepend="filterMode = !filterMode"
+        @click:prepend="filterMode = !filterMode; searchTerm = ''"
       />
       <!-- TAG SEARCH -->
       <v-combobox
