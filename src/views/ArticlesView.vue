@@ -169,7 +169,7 @@ export default {
       return searchValueFilter;
     },
   },
-  async created() {
+  async mounted() {
     this.loading = true;
     await this.fetchArticles(10);
     this.loading = false;

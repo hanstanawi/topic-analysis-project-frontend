@@ -35,13 +35,7 @@
               align="center"
               class="pl-3"
             >
-              <!-- TOP 3 TOPICS -->
-              <line-chart
-                :series="lineChartStats.series"
-                :categories="lineChartStats.categories"
-                :title="lineChartStats.title"
-                :height="300"
-              />
+              <word-cloud-component />
             </v-col>
           </v-row>
         </v-col>
@@ -84,6 +78,7 @@ import LineChart from '../components/charts/LineChart.vue';
 import ArticlesList from '../components/dashboard/ArticlesList.vue';
 import ArticleDetailsModal from '../components/dashboard/ArticleDetailsModal.vue';
 import MainLoading from '../components/animations/MainLoading.vue';
+import WordCloudComponent from '../components/dashboard/WordCloud.vue';
 
 export default {
   name: 'Dashboard',
@@ -92,6 +87,7 @@ export default {
     ArticlesList,
     ArticleDetailsModal,
     MainLoading,
+    WordCloudComponent,
   },
   data() {
     return {
@@ -108,11 +104,11 @@ export default {
       areaChartStats: 'getDashboardAreaChartStats',
     }),
   },
-  async created() {
-    this.loading = true;
-    await this.fetchArticles(5);
-    this.loading = false;
-  },
+  // async mounted() {
+  //   this.loading = true;
+  //   await this.fetchArticles(5);
+  //   this.loading = false;
+  // },
   methods: {
     ...mapActions({
       fetchArticles: 'getFiveLatestArticles',
