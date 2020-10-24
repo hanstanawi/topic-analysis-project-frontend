@@ -312,4 +312,11 @@ const topicsData = [
   },
 ];
 
-export { newsData, topicsData };
+const wordCloud = {
+  肺炎: 8,
+  蔡英文: 1,
+  美食: 5,
+  台灣: 2,
+};
+
+export { newsData, topicsData, wordCloud };

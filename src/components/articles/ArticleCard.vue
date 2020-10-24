@@ -7,17 +7,12 @@
     <v-responsive>
       <v-img :src="article.image" contain />
     </v-responsive>
-    <!-- <router-link
-      tag="p"
-      :to="{ name: 'ArticleDetails', params: { id: article.id } }"
-    > -->
       <v-card-title
         class="article-title pb-0 text-left font-weight-bold"
         @click="selectArticle"
       >
         {{ article.title }}
       </v-card-title>
-    <!-- </router-link> -->
     <v-row
       class="my-0 py-0"
     >

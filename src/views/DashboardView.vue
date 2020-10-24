@@ -35,7 +35,9 @@
               align="center"
               class="pl-3"
             >
-              <word-cloud-component />
+              <word-cloud-component
+                :words="wordCloudContent"
+              />
             </v-col>
           </v-row>
         </v-col>
@@ -100,15 +102,14 @@ export default {
     ...mapGetters({
       articlesList: 'getDashboardArticlesList',
       lineChartStats: 'getDashboardLineChartStats',
-      barChartStats: 'getDashboardBarChartStats',
-      areaChartStats: 'getDashboardAreaChartStats',
+      wordCloudContent: 'getWordCloudContent',
     }),
   },
-  // async mounted() {
-  //   this.loading = true;
-  //   await this.fetchArticles(5);
-  //   this.loading = false;
-  // },
+  async mounted() {
+    this.loading = true;
+    await this.fetchArticles(5);
+    this.loading = false;
+  },
   methods: {
     ...mapActions({
       fetchArticles: 'getFiveLatestArticles',

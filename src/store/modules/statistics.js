@@ -1,9 +1,10 @@
 /* eslint-disable no-useless-catch */
 /* eslint-disable no-shadow */
+import { wordCloud } from './dummyData';
 
 const state = {
   dashboardLineChartStats: {
-    title: 'Top 3 Topics',
+    title: 'Search Frequency Last 24 hours',
     categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998], // X-Axis
     series: [ // Y-Axis
       {
@@ -16,6 +17,14 @@ const state = {
       },
       {
         name: 'Topic 3',
+        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+      },
+      {
+        name: 'Topic 4',
+        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+      },
+      {
+        name: 'Topic 5',
         data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
       },
     ],
@@ -70,10 +79,10 @@ const state = {
     stacked: true,
     categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
   },
+  wordCloudContent: wordCloud,
 };
 
 const mutations = {
-
 };
 
 const getters = {
@@ -91,6 +100,10 @@ const getters = {
   },
   getTopicBarChartStats() {
     return state.topicBarChartStats;
+  },
+  getWordCloudContent() {
+    const wordsArray = Object.entries(state.wordCloudContent);
+    return wordsArray;
   },
 };
 

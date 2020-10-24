@@ -37,9 +37,18 @@
           justify="space-between"
           class="mx-4 py-0"
         >
-          <div class="text-left text-h6">Search Results</div>
+          <div
+            class="text-left text-h6"
+            style="transform: translate(125%, 0); position: relative;"
+          >
+            Search Results
+          </div>
+          <div>Search Duration:
+            <span class="font-weight-bold"> {{ searchedArticlesListTime }}</span>s
+          </div>
           <p
             class="back-button text-left body-1"
+            style="transform: translate(-120%, 0); position: relative;"
             @click="searchedResults = false"
           >
             Back to Text Editor
@@ -64,7 +73,7 @@
           :article="articleOpened"
         />
       </div>
-      <v-row v-if="!searchedArticlesList.length && searchedResults">
+      <v-row v-if="(!searchedArticlesList.length && searchedResults) || errorState">
         <v-col
           align="center"
           cols="12"
@@ -122,6 +131,8 @@ export default {
   computed: {
     ...mapGetters({
       searchedArticlesList: 'getSearchedArticlesWithArticle',
+      searchedArticlesListTime: 'getSearchedArticlesWithArticleTime',
+      errorState: 'getErrorState',
     }),
     strippedContent() {
       const regex = /(<([^>]+)>)/ig;

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-useless-catch */
 /* eslint-disable no-shadow */
 import articlesAPI from '../../api/articlesAPI';
@@ -5,8 +6,9 @@ import articlesAPI from '../../api/articlesAPI';
 const state = {
   dashboardArticlesList: [],
   articlesViewList: [],
-  searchResultArticlesWithKeyword: [],
-  searchResultArticlesWithArticle: [],
+  searchResultArticlesWithKeyword: {},
+  searchResultArticlesWithArticle: {},
+  error: false,
 };
 
 const mutations = {
@@ -23,8 +25,12 @@ const mutations = {
     state.searchResultArticlesWithArticle = articles;
   },
   CLEAR_SEARCHED_ARTICLES_LIST(state) {
-    state.searchResultArticlesWithKeyword = [];
-    state.searchResultArticlesWithArticle = [];
+    state.searchResultArticlesWithKeyword = {};
+    state.searchResultArticlesWithArticle = {};
+    state.error = false;
+  },
+  SET_ERROR(state) {
+    state.error = true;
   },
 };
 
@@ -36,10 +42,19 @@ const getters = {
     return state.articlesViewList;
   },
   getSearchedArticlesWithKeyword() {
-    return state.searchResultArticlesWithKeyword;
+    return state.searchResultArticlesWithKeyword.articlesResult ? state.searchResultArticlesWithKeyword.articlesResult : [];
   },
   getSearchedArticlesWithArticle() {
-    return state.searchResultArticlesWithArticle;
+    return state.searchResultArticlesWithArticle.articlesResult ? state.searchResultArticlesWithArticle.articlesResult : [];
+  },
+  getSearchedArticlesWithKeywordTime() {
+    return state.searchResultArticlesWithKeyword.timeTaken ? state.searchResultArticlesWithKeyword.timeTaken.toFixed(2) : null;
+  },
+  getSearchedArticlesWithArticleTime() {
+    return state.searchResultArticlesWithArticle.timeTaken ? state.searchResultArticlesWithArticle.timeTaken.toFixed(2) : null;
+  },
+  getErrorState() {
+    return state.error;
   },
 };
 
@@ -63,23 +78,21 @@ const actions = {
   async searchArticlesWithKeyword({ commit }, keyword) {
     try {
       const articles = await articlesAPI.searchArticlesWithKeyword(keyword);
-      // eslint-disable-next-line no-underscore-dangle
-      // const articlesArray = articles.data.map((article) => article._source);
       commit('CLEAR_SEARCHED_ARTICLES_LIST');
       commit('SET_SEARCHED_KEYWORD_ARTICLES', articles.data);
     } catch (err) {
-      throw err;
+      commit('SET_ERROR');
+      console.log(err);
     }
   },
   async searchArticlesWithArticle({ commit }, text) {
     try {
       const articles = await articlesAPI.searchArticlesWithArticle(text);
-      // eslint-disable-next-line no-underscore-dangle
-      // const articlesArray = articles.data.map((article) => article._source);
       commit('CLEAR_SEARCHED_ARTICLES_LIST');
       commit('SET_SEARCHED_ARTICLES_LIST', articles.data);
     } catch (err) {
-      throw err;
+      commit('SET_ERROR');
+      console.log(err);
     }
   },
 };

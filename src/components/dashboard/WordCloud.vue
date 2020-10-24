@@ -1,11 +1,11 @@
 <template>
   <vue-word-cloud
     style="
-      height: 300px;
-      width: 640px;
+      height: 200px;
+      width: 800px;
     "
-    :words="[['肺炎', 10], ['蔡英文', 3], ['美食', 7], ['台灣', 3]]"
-    :color="([, weight]) => weight > 10 ? 'RoyalBlue' : weight > 5 ? 'Red' : 'Black'"
+    :words="words"
+    :color="([, weight]) => weight > 10 ? 'Red' : weight > 5 ? 'RoyalBlue' : 'Black'"
     font-family="Roboto"
   />
 </template>
@@ -15,6 +15,12 @@ import VueWordCloud from 'vuewordcloud';
 
 export default {
   name: 'WordCloud',
+  props: {
+    words: {
+      type: Array,
+      default: () => [],
+    },
+  },
   components: {
     [VueWordCloud.name]: VueWordCloud,
   },

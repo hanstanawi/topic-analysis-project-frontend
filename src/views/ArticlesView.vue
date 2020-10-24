@@ -13,7 +13,11 @@
       <!-- LATEST ARTICLES -->
       <div v-if="!searchedResults">
         <v-row>
-        <span class="text-left text-h6 ml-10">Headlines</span>
+          <span
+            class="text-left text-h6 ml-10 sub-title"
+          >
+            Headlines
+          </span>
           <v-col
             cols="12"
             v-for="article in filteredList"
@@ -32,9 +36,18 @@
           justify="space-between"
           class="mx-4 py-0"
         >
-          <div class="text-left text-h6">Search Results</div>
+          <div
+            class="text-left text-h6"
+            style="transform: translate(125%, 0); position: relative;"
+          >
+            Search Results
+          </div>
+          <div>Search Duration:
+            <span class="font-weight-bold">{{ searchedArticlesWithKeywordTime }}s</span>
+          </div>
           <p
             class="back-button text-left body-1"
+            style="transform: translate(-105%, 0); position: relative;"
             @click="searchedResults = false"
           >
             Back to Latest Articles
@@ -54,15 +67,12 @@
         </v-row>
       </div>
       <v-row
-        v-if="!searchedKeywordArticlesList.length
-          && !searchedTextArticlesList.length
-          && searchedResults"
-      >
+        v-if="(!searchedKeywordArticlesList.length
+          && !searchedTextArticlesList.length && searchedResults) || errorState">
         <v-col
           align="center"
           cols="12"
         >
-
           <div
             class="text-h4 font-weight-bold"
             style="transform: translate(0, 500%)"
@@ -124,6 +134,8 @@ export default {
       articlesList: 'getArticlesViewList',
       searchedKeywordArticlesList: 'getSearchedArticlesWithKeyword',
       searchedTextArticlesList: 'getSearchedArticlesWithArticle',
+      searchedArticlesWithKeywordTime: 'getSearchedArticlesWithKeywordTime',
+      errorState: 'getErrorState',
     }),
     searchKeywordResultList: {
       get() {
@@ -217,5 +229,9 @@ export default {
 }
 .back-button:hover {
   text-decoration: underline;
+}
+.sub-title {
+  transform: translate(180%, 0);
+  position: relative;
 }
 </style>
