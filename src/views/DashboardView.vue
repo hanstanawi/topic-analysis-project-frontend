@@ -36,6 +36,7 @@
               class="pl-3"
             >
               <word-cloud-component
+                class="my-4"
                 :words="wordCloudContent"
               />
             </v-col>
@@ -50,9 +51,12 @@
               cols="12"
               align="center"
             >
-              <articles-list
+              <!-- <articles-list
                 @open-article-modal="openArticleDetails"
                 :articles-list="articlesList"
+              /> -->
+              <search-history-list
+                :keyword-list="searchHistory"
               />
             </v-col>
           </v-row>
@@ -77,19 +81,21 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import LineChart from '../components/charts/LineChart.vue';
-import ArticlesList from '../components/dashboard/ArticlesList.vue';
+// import ArticlesList from '../components/dashboard/ArticlesList.vue';
 import ArticleDetailsModal from '../components/dashboard/ArticleDetailsModal.vue';
 import MainLoading from '../components/animations/MainLoading.vue';
 import WordCloudComponent from '../components/dashboard/WordCloud.vue';
+import SearchHistoryList from '../components/dashboard/SearchHistoryList.vue';
 
 export default {
   name: 'Dashboard',
   components: {
     LineChart,
-    ArticlesList,
+    // ArticlesList,
     ArticleDetailsModal,
     MainLoading,
     WordCloudComponent,
+    SearchHistoryList,
   },
   data() {
     return {
@@ -103,6 +109,7 @@ export default {
       articlesList: 'getDashboardArticlesList',
       lineChartStats: 'getDashboardLineChartStats',
       wordCloudContent: 'getWordCloudContent',
+      searchHistory: 'getSearchHistory',
     }),
   },
   async mounted() {

@@ -1,31 +1,32 @@
+/* eslint-disable max-len */
 /* eslint-disable no-useless-catch */
 /* eslint-disable no-shadow */
-import { wordCloud } from './dummyData';
+import { wordCloud, historyList } from './dummyData';
 
 const state = {
   dashboardLineChartStats: {
     title: 'Search Frequency Last 24 hours',
-    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998], // X-Axis
+    categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'], // X-Axis
     series: [ // Y-Axis
       {
-        name: 'Topic 1',
-        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10],
+        name: '韓國瑜',
+        data: [0, 2, 9, 7, 8, 10, 2, 1, 4, 0, 0, 0, 3, 4, 1, 4, 2, 5, 10, 4, 8, 6, 4, 2, 9],
       },
       {
-        name: 'Topic 2',
-        data: [35, 41, 62, 42, 13, 18, 29, 37, 36, 51, 32, 35],
+        name: '肺炎',
+        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10, 20, 10, 2, 10, 3, 5, 10, 4, 8, 6, 4, 2, 9],
       },
       {
-        name: 'Topic 3',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+        name: '國昌',
+        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10, 20, 10, 2, 10, 3, 5, 10, 4, 8, 6, 4, 2, 9],
       },
       {
-        name: 'Topic 4',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+        name: '高雄',
+        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10, 20, 10, 2, 10, 3, 5, 10, 4, 8, 6, 4, 2, 9],
       },
       {
-        name: 'Topic 5',
-        data: [87, 57, 74, 99, 75, 38, 62, 47, 82, 56, 45, 47],
+        name: '稅',
+        data: [45, 52, 38, 24, 33, 26, 21, 20, 6, 8, 15, 10, 20, 10, 2, 10, 3, 5, 10, 4, 8, 6, 4, 2, 9],
       },
     ],
   },
@@ -80,6 +81,7 @@ const state = {
     categories: [2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
   },
   wordCloudContent: wordCloud,
+  searchHistory: historyList,
 };
 
 const mutations = {
@@ -104,6 +106,9 @@ const getters = {
   getWordCloudContent() {
     const wordsArray = Object.entries(state.wordCloudContent);
     return wordsArray;
+  },
+  getSearchHistory() {
+    return state.searchHistory;
   },
 };
 

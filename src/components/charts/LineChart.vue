@@ -48,6 +48,11 @@ export default {
           toolbar: {
             show: false,
           },
+          zoom: {
+            enabled: true,
+            type: 'x',
+            autoScaleYaxis: false,
+          },
         },
         xaxis: {
           categories: this.categories,
