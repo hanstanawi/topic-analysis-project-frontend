@@ -48,11 +48,11 @@ export default {
   data() {
     return {
       links: [
-        {
-          label: 'Dashboard',
-          url: '/',
-          icon: 'mdi-view-dashboard-variant-outline',
-        },
+        // {
+        //   label: 'Dashboard',
+        //   url: '/',
+        //   icon: 'mdi-view-dashboard-variant-outline',
+        // },
         // {
         //   label: 'Topic Detection',
         //   url: '/topics',

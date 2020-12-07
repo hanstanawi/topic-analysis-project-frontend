@@ -112,11 +112,11 @@ export default {
       searchHistory: 'getSearchHistory',
     }),
   },
-  async mounted() {
-    this.loading = true;
-    await this.fetchArticles(5);
-    this.loading = false;
-  },
+  // async mounted() {
+  //   this.loading = true;
+  //   await this.fetchArticles(5);
+  //   this.loading = false;
+  // },
   methods: {
     ...mapActions({
       fetchArticles: 'getFiveLatestArticles',
