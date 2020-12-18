@@ -19,7 +19,7 @@
         >
           mdi-newspaper-variant
         </v-icon>
-       Topic Analysis
+       Semantic Search
      </v-toolbar-title>
    </v-app-bar>
    <v-slide-x-transition appear>
